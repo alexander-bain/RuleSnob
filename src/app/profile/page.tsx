@@ -1,201 +1,259 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useAuth } from "@/lib/auth";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { getTitle, getTitleColor } from "@/lib/scoring";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import { loadCardStates, loadUserStats, getUserGroups } from "@/lib/firestore";
+import { calculateRulesIQ, getTitle, getTitleColor } from "@/lib/scoring";
+import { SCENARIOS, CATEGORIES } from "@/lib/scenarios";
+import { SM2 } from "@/lib/sm2";
+import { CardState, CategoryKey, GroupDoc } from "@/types";
 
-interface ProfileStats {
-  rulesIQ: number;
-  totalScenarios: number;
-  totalSessions: number;
-  streak: number;
-  accuracy: number;
-  categoryMastery: Record<string, number>;
-}
+type GroupWithId = { id: string } & GroupDoc;
 
-export default function ProfilePage() {
-  const { user, loading } = useAuth();
+function ProfileContent() {
+  const { user, signOut } = useAuth();
   const router = useRouter();
+  const [cardStates, setCardStates] = useState<Record<string, CardState>>({});
+  const [stats, setStats] = useState<{
+    totalSessions: number;
+    streak: number;
+  }>({ totalSessions: 0, streak: 0 });
+  const [groups, setGroups] = useState<GroupWithId[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.push("/");
-    }
-  }, [user, loading, router]);
+    if (!user) return;
+    async function load() {
+      try {
+        const [savedStates, savedStats, userGroups] = await Promise.all([
+          loadCardStates(user!.uid),
+          loadUserStats(user!.uid),
+          getUserGroups(user!.uid),
+        ]);
 
-  if (loading || !user) {
+        // Merge with defaults
+        const merged: Record<string, CardState> = {};
+        for (const sc of SCENARIOS) merged[sc.id] = SM2.defaults();
+        for (const [id, state] of Object.entries(savedStates)) {
+          merged[id] = state;
+        }
+        setCardStates(merged);
+
+        if (savedStats) {
+          setStats({
+            totalSessions: savedStats.totalSessions,
+            streak: savedStats.streak,
+          });
+        }
+        setGroups(userGroups);
+      } catch (err) {
+        console.error("Failed to load profile data:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, [user]);
+
+  const { rulesIQ, categoryMastery } = calculateRulesIQ(cardStates, SCENARIOS);
+  const title = getTitle(rulesIQ);
+  const titleColor = getTitleColor(rulesIQ);
+  const scenariosSeen = Object.values(cardStates).filter(
+    (c) => c.timesSeen > 0
+  ).length;
+  const totalCorrect = Object.values(cardStates).reduce(
+    (sum, c) => sum + c.timesCorrect,
+    0
+  );
+  const totalAttempts = Object.values(cardStates).reduce(
+    (sum, c) => sum + c.timesSeen,
+    0
+  );
+  const accuracy =
+    totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
+
+  if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-border border-t-golf-green" />
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[#FAF8F5] to-[#F0EDE8]">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#EEEEEE] border-t-[#1B5E20]" />
       </div>
     );
   }
 
-  // Mock stats - in production these would come from Firestore
-  const stats: ProfileStats = {
-    rulesIQ: 2450,
-    totalScenarios: 156,
-    totalSessions: 23,
-    streak: 8,
-    accuracy: 74,
-    categoryMastery: {
-      FUNDAMENTALS: 85,
-      PLAYING_ROUND: 72,
-      PLAYING_BALL: 68,
-      BUNKERS_GREENS: 79,
-      LIFTING_RETURNING: 65,
-      FREE_RELIEF: 82,
-      PENALTY_RELIEF: 71,
-      RESOLVING: 76,
-    },
-  };
-
-  const title = getTitle(stats.rulesIQ);
-  const titleColor = getTitleColor(stats.rulesIQ);
-
-  const achievements = [
-    { id: 1, name: "First Steps", description: "Complete your first session" },
-    { id: 2, name: "7-Day Streak", description: "Maintain a 7-day streak" },
-    { id: 3, name: "Expert", description: "Reach 2000+ Rules IQ" },
-    { id: 4, name: "Perfectionist", description: "Get 100% in a session" },
-    { id: 5, name: "Prolific", description: "Complete 50 sessions" },
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-bg-light to-bg-dark">
-      <div className="mx-auto max-w-mobile px-5 py-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#FAF8F5] to-[#F0EDE8]">
+      <div className="mx-auto max-w-[520px] px-5 py-4">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-border pb-4 pt-6">
+        <div className="flex items-center justify-between pb-6 pt-8">
           <button
-            onClick={() => router.back()}
-            className="text-sm font-medium text-pencil hover:text-golf-green"
+            onClick={() => router.push("/play")}
+            className="text-sm font-medium text-[#757575] hover:text-[#2D2D2D]"
           >
-            ← Back
+            &larr; Back
           </button>
-          <h1 className="text-lg font-bold text-dark-green">Profile</h1>
-          <div className="w-14" />
+          <div className="text-sm font-semibold uppercase tracking-[2px] text-[#2E7D32]">
+            Profile
+          </div>
+          <button
+            onClick={signOut}
+            className="text-xs font-medium text-[#757575]"
+          >
+            Sign out
+          </button>
         </div>
 
         {/* Profile Header */}
-        <div className="my-6 text-center">
-          {user.photoURL && (
+        <div className="mb-5 rounded-2xl border border-[#EEEEEE] bg-white p-6 text-center shadow-sm">
+          {user?.photoURL && (
             <img
               src={user.photoURL}
-              alt={user.displayName || "User"}
-              className="mx-auto mb-4 h-20 w-20 rounded-full shadow-golf-md"
+              alt=""
+              className="mx-auto mb-3 h-16 w-16 rounded-full"
               referrerPolicy="no-referrer"
             />
           )}
-          <h2 className="text-xl font-bold text-pencil">
-            {user.displayName || "Golfer"}
-          </h2>
-          <p className="mt-1 text-sm font-semibold text-golf-green">
+          <div className="text-lg font-bold text-[#2D2D2D]">
+            {user?.displayName || "Golfer"}
+          </div>
+          <div
+            className="mt-1 text-sm font-semibold"
+            style={{ color: titleColor }}
+          >
             {title}
-          </p>
-        </div>
-
-        {/* Main Stats Card */}
-        <div className="mb-5 rounded-golf-lg border border-border bg-white p-6 shadow-golf-md">
-          <div className="mb-6 text-center">
-            <div className="text-5xl font-bold text-dark-green">
-              {stats.rulesIQ}
-            </div>
-            <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-textMuted">
-              Rules IQ Score
-            </div>
           </div>
-
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-lg bg-light-green p-4 text-center">
-              <div className="text-2xl font-bold text-golf-green">
-                {stats.totalScenarios}
-              </div>
-              <div className="mt-1 text-xs text-textMuted">Total Scenarios</div>
-            </div>
-            <div className="rounded-lg bg-light-green p-4 text-center">
-              <div className="text-2xl font-bold text-golf-green">
-                {stats.totalSessions}
-              </div>
-              <div className="mt-1 text-xs text-textMuted">Sessions</div>
-            </div>
-            <div className="rounded-lg bg-light-green p-4 text-center">
-              <div className="text-2xl font-bold text-golf-green">
-                {stats.streak}
-              </div>
-              <div className="mt-1 text-xs text-textMuted">Day Streak</div>
-            </div>
-            <div className="rounded-lg bg-light-green p-4 text-center">
-              <div className="text-2xl font-bold text-golf-green">
-                {stats.accuracy}%
-              </div>
-              <div className="mt-1 text-xs text-textMuted">Avg Accuracy</div>
-            </div>
+          <div className="mt-3 text-[48px] font-bold leading-none text-[#1B5E20]">
+            {rulesIQ}
+          </div>
+          <div className="mt-1 text-[11px] uppercase tracking-[1px] text-[#757575]">
+            Rules IQ
           </div>
         </div>
 
-        {/* Mastery by Category */}
-        <div className="mb-5 rounded-golf-lg border border-border bg-white p-5 shadow-golf-md">
-          <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-textMuted">
+        {/* Stats Grid */}
+        <div className="mb-5 grid grid-cols-2 gap-3">
+          {[
+            { label: "Scenarios", value: scenariosSeen },
+            { label: "Sessions", value: stats.totalSessions },
+            { label: "Streak", value: stats.streak },
+            { label: "Accuracy", value: `${accuracy}%` },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              className="rounded-2xl border border-[#EEEEEE] bg-white p-4 text-center shadow-sm"
+            >
+              <div className="text-xl font-bold text-[#2D2D2D]">
+                {stat.value}
+              </div>
+              <div className="mt-0.5 text-[11px] uppercase tracking-[0.5px] text-[#757575]">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Category Mastery */}
+        <div className="mb-5 rounded-2xl border border-[#EEEEEE] bg-white px-6 py-5 shadow-sm">
+          <div className="mb-4 text-[13px] font-semibold uppercase tracking-[1px] text-[#757575]">
             Category Mastery
-          </h3>
-          <div className="space-y-2">
-            {Object.entries(stats.categoryMastery).map(([category, percentage]) => {
-              const masteryColor =
-                percentage >= 70
-                  ? "golf-green"
-                  : percentage >= 40
-                    ? "golf-orange"
-                    : "golf-red";
-              return (
-                <div key={category} className="flex items-center gap-2">
-                  <div className="flex-1">
-                    <div className="h-1.5 overflow-hidden rounded-full bg-border">
-                      <div
-                        className={`h-full rounded-full bg-${masteryColor} transition-all duration-500`}
-                        style={{ width: `${percentage}%` }}
-                      />
-                    </div>
-                  </div>
-                  <span className="w-8 text-right text-xs font-semibold text-pencil">
-                    {percentage}%
+          </div>
+          {(
+            Object.entries(CATEGORIES) as [
+              CategoryKey,
+              (typeof CATEGORIES)[CategoryKey],
+            ][]
+          ).map(([key, cat]) => {
+            const mastery = categoryMastery[key] || 0;
+            const masteryColor =
+              mastery >= 70
+                ? "#2E7D32"
+                : mastery >= 40
+                  ? "#E65100"
+                  : mastery > 0
+                    ? "#C62828"
+                    : "#BDBDBD";
+            return (
+              <div key={key} className="mb-3">
+                <div className="mb-1 flex items-center justify-between">
+                  <span className="text-[13px] font-medium text-[#2D2D2D]">
+                    {cat.name}
+                  </span>
+                  <span
+                    className="text-[13px] font-semibold"
+                    style={{ color: masteryColor }}
+                  >
+                    {mastery > 0 ? `${mastery}%` : "—"}
                   </span>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Achievements */}
-        <div className="rounded-golf-lg border border-border bg-white p-5 shadow-golf-md">
-          <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-textMuted">
-            Achievements
-          </h3>
-          <div className="space-y-2">
-            {achievements.map((achievement) => (
-              <div
-                key={achievement.id}
-                className="flex items-center gap-3 rounded-lg bg-light-green p-3"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-golf-green text-white">
-                  ★
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-pencil">
-                    {achievement.name}
-                  </div>
-                  <div className="text-xs text-textMuted">
-                    {achievement.description}
-                  </div>
+                <div className="h-1.5 overflow-hidden rounded-full bg-[#F5F5F5]">
+                  <div
+                    className="h-full rounded-full"
+                    style={{
+                      width: `${Math.max(mastery, 2)}%`,
+                      backgroundColor: masteryColor,
+                    }}
+                  />
                 </div>
               </div>
-            ))}
+            );
+          })}
+        </div>
+
+        {/* Groups */}
+        <div className="mb-5 rounded-2xl border border-[#EEEEEE] bg-white px-6 py-5 shadow-sm">
+          <div className="mb-3 flex items-center justify-between">
+            <div className="text-[13px] font-semibold uppercase tracking-[1px] text-[#757575]">
+              Groups
+            </div>
+            <button
+              onClick={() => router.push("/leaderboard")}
+              className="text-xs font-medium text-[#2E7D32]"
+            >
+              Manage &rarr;
+            </button>
           </div>
+          {groups.length > 0 ? (
+            <div className="space-y-2">
+              {groups.map((group) => (
+                <button
+                  key={group.id}
+                  onClick={() => router.push("/leaderboard")}
+                  className="flex w-full items-center justify-between rounded-lg bg-[#F5F5F5] px-4 py-3 text-left"
+                >
+                  <span className="text-sm font-medium text-[#2D2D2D]">
+                    {group.name}
+                  </span>
+                  <span className="text-xs text-[#757575]">
+                    {group.memberUids.length} member
+                    {group.memberUids.length !== 1 ? "s" : ""}
+                  </span>
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className="text-sm text-[#757575]">
+              No groups yet.{" "}
+              <button
+                onClick={() => router.push("/leaderboard")}
+                className="font-medium text-[#2E7D32]"
+              >
+                Create or join one
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="mb-8" />
       </div>
     </div>
+  );
+}
+
+export default function ProfilePage() {
+  return (
+    <ProtectedRoute>
+      <ProfileContent />
+    </ProtectedRoute>
   );
 }

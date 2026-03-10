@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { CardState, CategoryKey, Scenario } from "@/types";
 import { CATEGORIES, SCENARIOS } from "@/lib/scenarios";
 import { getTitle, getTitleColor } from "@/lib/scoring";
@@ -33,6 +34,7 @@ export default function HomeScreen({
   onSignOut,
   userName,
 }: HomeScreenProps) {
+  const router = useRouter();
   const scenariosSeen = Object.values(cardStates).filter(
     (c) => c.timesSeen > 0
   ).length;
@@ -240,6 +242,14 @@ export default function HomeScreen({
         <div className="mt-2 text-center text-xs text-[#757575]">
           {dueCount} due for review &middot; {newCount} new scenarios
         </div>
+
+        {/* Leaderboard Link */}
+        <button
+          onClick={() => router.push("/leaderboard")}
+          className="mt-5 w-full rounded-xl border-[1.5px] border-[#EEEEEE] bg-white px-4 py-3.5 text-sm font-semibold text-[#2D2D2D] shadow-sm"
+        >
+          &#9971; Leaderboard &amp; Groups
+        </button>
       </div>
     </div>
   );

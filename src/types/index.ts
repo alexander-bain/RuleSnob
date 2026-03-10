@@ -50,3 +50,22 @@ export interface UserStats {
   streak: number;
   scenariosSeen: number;
 }
+
+export interface GroupDoc {
+  name: string;
+  createdBy: string;
+  inviteCode: string;
+  memberUids: string[];
+  createdAt: number;
+}
+
+export interface GroupMember {
+  uid: string;
+  displayName: string;
+  photoURL: string;
+  rulesIQ: number;
+  title: string;
+  totalSessions: number;
+  streak: number;
+  scenariosSeen: number;
+}

@@ -5,11 +5,18 @@ import {
   writeBatch,
   getDoc,
   setDoc,
+  query,
+  where,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
   Timestamp,
+  onSnapshot,
+  documentId,
 } from "firebase/firestore";
 import { User } from "firebase/auth";
 import { getFirebaseDb } from "./firebase";
-import { CardState, UserStats } from "@/types";
+import { CardState, UserStats, GroupDoc, GroupMember } from "@/types";
 
 export async function ensureUserDoc(user: User): Promise<void> {
   const db = getFirebaseDb();
@@ -107,4 +114,224 @@ export async function saveSessionResults(
   );
 
   await batch.commit();
+}
+
+// =============================================
+// GROUP FUNCTIONS
+// =============================================
+
+function generateInviteCode(): string {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no I/O/0/1 to avoid confusion
+  let code = "";
+  for (let i = 0; i < 6; i++) {
+    code += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return code;
+}
+
+export async function createGroup(
+  uid: string,
+  name: string
+): Promise<{ groupId: string; inviteCode: string }> {
+  const db = getFirebaseDb();
+  const inviteCode = generateInviteCode();
+  const groupRef = doc(collection(db, "groups"));
+  const groupId = groupRef.id;
+
+  await setDoc(groupRef, {
+    name,
+    createdBy: uid,
+    inviteCode,
+    memberUids: [uid],
+    createdAt: Timestamp.now(),
+  });
+
+  // Add group to user's groupIds
+  const userRef = doc(db, "users", uid);
+  await updateDoc(userRef, {
+    groupIds: arrayUnion(groupId),
+  });
+
+  return { groupId, inviteCode };
+}
+
+export async function joinGroup(
+  uid: string,
+  inviteCode: string
+): Promise<{ groupId: string; groupName: string }> {
+  const db = getFirebaseDb();
+  const groupsRef = collection(db, "groups");
+  const q = query(groupsRef, where("inviteCode", "==", inviteCode.toUpperCase()));
+  const snapshot = await getDocs(q);
+
+  if (snapshot.empty) {
+    throw new Error("Invalid invite code. Check the code and try again.");
+  }
+
+  const groupDoc = snapshot.docs[0];
+  const groupId = groupDoc.id;
+  const data = groupDoc.data();
+
+  if (data.memberUids.includes(uid)) {
+    throw new Error("You're already a member of this group.");
+  }
+
+  // Add user to group
+  await updateDoc(doc(db, "groups", groupId), {
+    memberUids: arrayUnion(uid),
+  });
+
+  // Add group to user's groupIds
+  await updateDoc(doc(db, "users", uid), {
+    groupIds: arrayUnion(groupId),
+  });
+
+  return { groupId, groupName: data.name };
+}
+
+export async function leaveGroup(uid: string, groupId: string): Promise<void> {
+  const db = getFirebaseDb();
+
+  await updateDoc(doc(db, "groups", groupId), {
+    memberUids: arrayRemove(uid),
+  });
+
+  await updateDoc(doc(db, "users", uid), {
+    groupIds: arrayRemove(groupId),
+  });
+}
+
+export async function getUserGroups(
+  uid: string
+): Promise<Array<{ id: string } & GroupDoc>> {
+  const db = getFirebaseDb();
+  const userRef = doc(db, "users", uid);
+  const userSnap = await getDoc(userRef);
+  if (!userSnap.exists()) return [];
+
+  const groupIds: string[] = userSnap.data().groupIds || [];
+  if (groupIds.length === 0) return [];
+
+  const groups: Array<{ id: string } & GroupDoc> = [];
+  // Firestore 'in' queries limited to 30 items
+  const chunks = [];
+  for (let i = 0; i < groupIds.length; i += 30) {
+    chunks.push(groupIds.slice(i, i + 30));
+  }
+
+  for (const chunk of chunks) {
+    const q = query(
+      collection(db, "groups"),
+      where(documentId(), "in", chunk)
+    );
+    const snap = await getDocs(q);
+    snap.forEach((d) => {
+      const data = d.data();
+      groups.push({
+        id: d.id,
+        name: data.name,
+        createdBy: data.createdBy,
+        inviteCode: data.inviteCode,
+        memberUids: data.memberUids,
+        createdAt: data.createdAt?.toMillis?.() ?? 0,
+      });
+    });
+  }
+
+  return groups;
+}
+
+export async function getGroupMembers(
+  groupId: string
+): Promise<GroupMember[]> {
+  const db = getFirebaseDb();
+  const groupRef = doc(db, "groups", groupId);
+  const groupSnap = await getDoc(groupRef);
+  if (!groupSnap.exists()) return [];
+
+  const memberUids: string[] = groupSnap.data().memberUids || [];
+  if (memberUids.length === 0) return [];
+
+  const members: GroupMember[] = [];
+  const chunks = [];
+  for (let i = 0; i < memberUids.length; i += 30) {
+    chunks.push(memberUids.slice(i, i + 30));
+  }
+
+  for (const chunk of chunks) {
+    const q = query(
+      collection(db, "users"),
+      where(documentId(), "in", chunk)
+    );
+    const snap = await getDocs(q);
+    snap.forEach((d) => {
+      const data = d.data();
+      members.push({
+        uid: d.id,
+        displayName: data.displayName || "Anonymous",
+        photoURL: data.photoURL || "",
+        rulesIQ: data.rulesIQ || 0,
+        title: data.title || "Rookie",
+        totalSessions: data.totalSessions || 0,
+        streak: data.streak || 0,
+        scenariosSeen: data.scenariosSeen || 0,
+      });
+    });
+  }
+
+  // Sort by Rules IQ descending
+  members.sort((a, b) => b.rulesIQ - a.rulesIQ);
+  return members;
+}
+
+export function subscribeToGroupMembers(
+  groupId: string,
+  onUpdate: (members: GroupMember[]) => void
+): () => void {
+  const db = getFirebaseDb();
+  const groupRef = doc(db, "groups", groupId);
+
+  return onSnapshot(groupRef, async (groupSnap) => {
+    if (!groupSnap.exists()) {
+      onUpdate([]);
+      return;
+    }
+
+    const memberUids: string[] = groupSnap.data().memberUids || [];
+    if (memberUids.length === 0) {
+      onUpdate([]);
+      return;
+    }
+
+    // Fetch all member user docs
+    const members: GroupMember[] = [];
+    const chunks = [];
+    for (let i = 0; i < memberUids.length; i += 30) {
+      chunks.push(memberUids.slice(i, i + 30));
+    }
+
+    for (const chunk of chunks) {
+      const q = query(
+        collection(db, "users"),
+        where(documentId(), "in", chunk)
+      );
+      const snap = await getDocs(q);
+      snap.forEach((d) => {
+        const data = d.data();
+        members.push({
+          uid: d.id,
+          displayName: data.displayName || "Anonymous",
+          photoURL: data.photoURL || "",
+          rulesIQ: data.rulesIQ || 0,
+          title: data.title || "Rookie",
+          totalSessions: data.totalSessions || 0,
+          streak: data.streak || 0,
+          scenariosSeen: data.scenariosSeen || 0,
+        });
+      });
+    }
+
+    members.sort((a, b) => b.rulesIQ - a.rulesIQ);
+    onUpdate(members);
+  });
 }
