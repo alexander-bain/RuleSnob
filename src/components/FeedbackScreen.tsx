@@ -121,7 +121,7 @@ export default function FeedbackScreen({
             )}
             <button
               onClick={onNext}
-              className="flex-[2] rounded-xl bg-[#1B5E20] px-4 py-3.5 text-[15px] font-semibold text-white shadow-[0_4px_12px_rgba(27,94,32,0.3)] transition-transform active:scale-[0.98]"
+              className="flex-[2] appearance-none rounded-xl bg-[#1B5E20] px-4 py-3.5 text-[15px] font-semibold text-white shadow-[0_4px_12px_rgba(27,94,32,0.3)] transition-transform active:scale-[0.98]"
             >
               {isLastScenario ? "See Results" : "Next Scenario"}
             </button>

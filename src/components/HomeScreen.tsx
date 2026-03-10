@@ -233,7 +233,7 @@ export default function HomeScreen({
         {/* Start Button */}
         <button
           onClick={onStartSession}
-          className="w-full rounded-xl bg-[#1B5E20] px-4 py-4 text-base font-semibold tracking-[0.5px] text-white shadow-[0_4px_12px_rgba(27,94,32,0.3)] transition-transform active:scale-[0.98]"
+          className="w-full appearance-none rounded-xl bg-[#1B5E20] px-4 py-4 text-base font-semibold tracking-[0.5px] text-white shadow-[0_4px_12px_rgba(27,94,32,0.3)] transition-transform active:scale-[0.98]"
         >
           Start {sessionLength === 9 ? "Front 9" : "Full 18"}
         </button>
