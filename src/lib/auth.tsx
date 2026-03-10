@@ -43,10 +43,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const handleSignIn = async () => {
+    console.log("[v0] Sign-in button clicked, current hostname:", window.location.hostname);
     try {
       const provider = new GoogleAuthProvider();
+      console.log("[v0] Attempting signInWithPopup...");
       await signInWithPopup(getFirebaseAuth(), provider);
+      console.log("[v0] Sign-in successful!");
     } catch (error: unknown) {
+      console.log("[v0] Sign-in error caught:", error);
       const firebaseError = error as { code?: string; message?: string };
       console.error("[v0] Sign-in error:", firebaseError.code, firebaseError.message);
       
