@@ -19,7 +19,7 @@ touch .env.local
 ```
 
 Then create a Firebase project at https://console.firebase.google.com:
-1. Create project called "rules-iq"
+1. Create project called "RuleSnob"
 2. Enable Authentication → Sign-in method → Google
 3. Create Firestore database (start in test mode, we'll add rules later)
 4. Go to Project Settings → Your apps → Add web app → copy config values into .env.local
@@ -29,7 +29,7 @@ Then create a Firebase project at https://console.firebase.google.com:
 ## The Prompt
 
 ```
-Read the CLAUDE.md file in this directory. It contains the complete specification for the Rules IQ app — a spaced-repetition golf rules learning game.
+Read the CLAUDE.md file in this directory. It contains the complete specification for the RuleSnob app — a spaced-repetition golf rules learning game.
 
 Your job is to build Phase 1. Here's what to do, in order:
 
@@ -96,7 +96,7 @@ Once Claude Code finishes Phase 1:
 
 1. **Test locally** — `npm run dev`, sign in, play a session, refresh, verify persistence
 2. **Deploy** — push to GitHub, connect repo in Vercel dashboard, add env vars in Vercel settings
-3. **Custom domain** — add golfrules.alexbain.com in Vercel, update DNS (CNAME to cname.vercel-dns.com)
+3. **Custom domain** — add RuleSnob.com in Vercel, update DNS (CNAME to cname.vercel-dns.com)
 4. **Firestore security rules** — replace test-mode rules with the production rules from CLAUDE.md
 5. **v0 design pass** — once it's live and working, use v0.dev to generate polished component designs, then swap them in
 
