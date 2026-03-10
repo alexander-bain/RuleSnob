@@ -29,16 +29,16 @@ export default function LandingPage() {
     <div className="flex min-h-screen flex-col items-center justify-center px-6">
       <div className="w-full max-w-sm text-center">
         {/* Logo / Title */}
-        <h1 className="mb-4 text-5xl font-bold tracking-tight text-dark-green">
+        <h1 className="mb-4 text-5xl font-bold tracking-tight text-emerald-900">
           RuleSnob
         </h1>
         
         {/* Tagline */}
-        <p className="mb-2 text-sm font-semibold text-golf-green">
+        <p className="mb-2 text-sm font-semibold text-emerald-700">
           Master the Rules of Golf
         </p>
         
-        <p className="mb-10 text-base leading-relaxed text-pencil">
+        <p className="mb-10 text-base leading-relaxed text-gray-700">
           Learn through spaced repetition with 300+ scenario-based questions. Track your Rules IQ and compete with golfers worldwide.
         </p>
 
@@ -48,13 +48,13 @@ export default function LandingPage() {
         </div>
 
         {/* Social proof or CTA */}
-        <div className="mt-10 flex items-center justify-center gap-1 text-xs text-textMuted">
+        <div className="mt-10 flex items-center justify-center gap-1 text-xs text-gray-500">
           <span>✓</span>
           <span>Trusted by golfers everywhere</span>
         </div>
 
         {/* Footer */}
-        <p className="mt-12 text-xs text-textMuted">
+        <p className="mt-12 text-xs text-gray-500">
           Based on the 2023 Rules of Golf
         </p>
       </div>
