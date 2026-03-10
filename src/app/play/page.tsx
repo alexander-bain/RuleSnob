@@ -46,6 +46,7 @@ function GameContent() {
   const [tier, setTier] = useState("all");
   const [sessionLength, setSessionLength] = useState<9 | 18>(9);
   const [firestoreLoaded, setFirestoreLoaded] = useState(false);
+  const [generatingAI, setGeneratingAI] = useState(false);
 
   // Track which card IDs changed during session for batch save
   const changedCardIds = useRef<Set<string>>(new Set());
@@ -93,8 +94,42 @@ function GameContent() {
     [cardStates]
   );
 
+  // Generate AI scenarios via API
+  const generateAIScenarios = async (
+    count: number,
+    categoryPool: string[],
+    tierFilter: string
+  ): Promise<Scenario[]> => {
+    const generated: Scenario[] = [];
+    const tiers =
+      tierFilter === "all"
+        ? ["weekend", "competitor", "official"]
+        : [tierFilter];
+
+    const promises = Array.from({ length: count }, (_, i) => {
+      const category =
+        categoryPool[i % categoryPool.length];
+      const t = tiers[Math.floor(Math.random() * tiers.length)];
+      return fetch("/api/generate-scenario", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ category, tier: t }),
+      })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data) => {
+          if (data?.scenario) {
+            generated.push(data.scenario as Scenario);
+          }
+        })
+        .catch(() => {});
+    });
+
+    await Promise.all(promises);
+    return generated;
+  };
+
   // Build session queue
-  const startSession = useCallback(() => {
+  const startSession = useCallback(async () => {
     const now = Date.now();
     const filteredScenarios =
       tier === "all"
@@ -121,12 +156,44 @@ function GameContent() {
     const wrongCount = Math.min(wrong.length, Math.ceil(sessionLength * 0.25));
     const dueCount = Math.min(due.length, Math.ceil(sessionLength * 0.4));
     const unseenCount = sessionLength - wrongCount - dueCount;
+    const actualUnseenCount = Math.min(unseen.length, Math.max(0, unseenCount));
+    const aiSlotsNeeded = Math.max(0, unseenCount) - actualUnseenCount;
 
-    const queue = [
+    const queue: Scenario[] = [
       ...wrong.slice(0, wrongCount),
       ...due.slice(0, dueCount),
-      ...unseen.slice(0, Math.max(0, unseenCount)),
+      ...unseen.slice(0, actualUnseenCount),
     ];
+
+    // Generate AI scenarios if we've run out of unseen curated ones
+    if (aiSlotsNeeded > 0) {
+      setGeneratingAI(true);
+      setScreen("session"); // Show loading state immediately
+      try {
+        const categories = [
+          ...new Set(filteredScenarios.map((s) => s.category)),
+        ];
+        const aiScenarios = await generateAIScenarios(
+          aiSlotsNeeded,
+          categories,
+          tier
+        );
+        // Initialize card states for AI scenarios
+        for (const s of aiScenarios) {
+          if (!cardStates[s.id]) {
+            setCardStates((prev) => ({
+              ...prev,
+              [s.id]: SM2.defaults(),
+            }));
+          }
+        }
+        queue.push(...aiScenarios);
+      } catch (err) {
+        console.error("Failed to generate AI scenarios:", err);
+      } finally {
+        setGeneratingAI(false);
+      }
+    }
 
     // Shuffle
     for (let i = queue.length - 1; i > 0; i--) {
@@ -292,6 +359,22 @@ function GameContent() {
         onSignOut={signOut}
         userName={user?.displayName ?? null}
       />
+    );
+  }
+
+  if (screen === "session" && generatingAI) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[#FAF8F5] to-[#F0EDE8]">
+        <div className="text-center">
+          <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-2 border-[#EEEEEE] border-t-[#1B5E20]" />
+          <p className="text-sm font-medium text-[#2D2D2D]">
+            Generating fresh scenarios...
+          </p>
+          <p className="mt-1 text-xs text-[#757575]">
+            You&apos;ve seen all the curated ones!
+          </p>
+        </div>
+      </div>
     );
   }
 
