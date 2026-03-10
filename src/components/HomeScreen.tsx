@@ -57,7 +57,7 @@ export default function HomeScreen({
         {/* Header */}
         <div className="flex items-center justify-between pb-6 pt-8">
           <div className="text-sm font-semibold uppercase tracking-[2px] text-[#2E7D32]">
-            Rules IQ
+            RuleSnob
           </div>
           {userName && (
             <button

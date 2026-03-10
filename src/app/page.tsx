@@ -29,16 +29,13 @@ export default function LandingPage() {
     <div className="flex min-h-screen flex-col items-center justify-center px-6">
       <div className="w-full max-w-sm text-center">
         {/* Logo / Title */}
-        <div className="mb-2 text-sm font-semibold uppercase tracking-[3px] text-[#2E7D32]">
-          RuleSnob
-        </div>
         <h1 className="mb-3 text-4xl font-bold tracking-tight text-[#1B5E20]">
-          Rules IQ
+          RuleSnob
         </h1>
         <p className="mb-8 text-base leading-relaxed text-[#757575]">
           Master the Rules of Golf with spaced repetition.
           <br />
-          49 scenario-based questions. Track your progress.
+          49 scenario-based questions. Track your Rules IQ.
           <br />
           Become a Rules Official.
         </p>
