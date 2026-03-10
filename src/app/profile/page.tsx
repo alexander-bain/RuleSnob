@@ -9,6 +9,7 @@ import { calculateRulesIQ, getTitle, getTitleColor } from "@/lib/scoring";
 import { SCENARIOS, CATEGORIES } from "@/lib/scenarios";
 import { SM2 } from "@/lib/sm2";
 import { CardState, CategoryKey, GroupDoc } from "@/types";
+import { trackScreenTransition, trackSignOut as trackSignOutEvent } from "@/lib/analytics";
 
 type GroupWithId = { id: string } & GroupDoc;
 
@@ -88,7 +89,10 @@ function ProfileContent() {
         {/* Header */}
         <div className="flex items-center justify-between pb-6 pt-8">
           <button
-            onClick={() => router.push("/play")}
+            onClick={() => {
+              trackScreenTransition({ from_screen: "profile", to_screen: "play" });
+              router.push("/play");
+            }}
             className="text-sm font-medium text-[#757575] hover:text-[#2D2D2D]"
           >
             &larr; Back

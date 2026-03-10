@@ -13,6 +13,14 @@ import {
 } from "@/lib/firestore";
 import { GroupDoc, GroupMember } from "@/types";
 import { getTitle, getTitleColor } from "@/lib/scoring";
+import {
+  trackGroupCreated,
+  trackGroupJoined,
+  trackGroupLeft,
+  trackInviteCodeCopied,
+  trackLeaderboardViewed,
+  trackScreenTransition,
+} from "@/lib/analytics";
 
 type GroupWithId = { id: string } & GroupDoc;
 
@@ -55,9 +63,24 @@ function LeaderboardContent() {
     if (!selectedGroupId) return;
     const unsubscribe = subscribeToGroupMembers(selectedGroupId, (updated) => {
       setMembers(updated);
+      // Track leaderboard view when members first load
+      if (user && updated.length > 0) {
+        const currentUser = updated.find((m) => m.uid === user.uid);
+        const leader = updated[0];
+        if (currentUser && leader) {
+          const userRank = updated.findIndex((m) => m.uid === user.uid) + 1;
+          trackLeaderboardViewed({
+            group_member_count: updated.length,
+            user_rank: userRank,
+            user_rules_iq: currentUser.rulesIQ,
+            leader_rules_iq: leader.rulesIQ,
+            iq_gap_to_leader: leader.rulesIQ - currentUser.rulesIQ,
+          });
+        }
+      }
     });
     return unsubscribe;
-  }, [selectedGroupId]);
+  }, [selectedGroupId, user]);
 
   const handleCreateGroup = async () => {
     if (!user || !newGroupName.trim()) return;
@@ -72,6 +95,10 @@ function LeaderboardContent() {
       setSuccessMessage(`Group created! Invite code: ${inviteCode}`);
       setSelectedGroupId(groupId);
       await loadGroups();
+      trackGroupCreated({
+        group_name_length: newGroupName.trim().length,
+        total_groups_after: groups.length + 1,
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to create group");
     }
@@ -81,11 +108,15 @@ function LeaderboardContent() {
     if (!user || !joinCode.trim()) return;
     setError(null);
     try {
-      const { groupName } = await joinGroup(user.uid, joinCode.trim());
+      const { groupName, memberCount } = await joinGroup(user.uid, joinCode.trim());
       setJoinCode("");
       setShowJoin(false);
       setSuccessMessage(`Joined "${groupName}"!`);
       await loadGroups();
+      trackGroupJoined({
+        group_member_count: memberCount,
+        total_groups_after: groups.length + 1,
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to join group");
     }
@@ -95,12 +126,17 @@ function LeaderboardContent() {
     if (!user) return;
     if (!confirm("Leave this group?")) return;
     try {
+      const leavingGroup = groups.find((g) => g.id === groupId);
       await leaveGroup(user.uid, groupId);
       if (selectedGroupId === groupId) {
         setSelectedGroupId(null);
         setMembers([]);
       }
       await loadGroups();
+      trackGroupLeft({
+        group_member_count: leavingGroup?.memberUids.length ?? 0,
+        total_groups_after: groups.length - 1,
+      });
     } catch (err) {
       console.error("Failed to leave group:", err);
     }
@@ -110,6 +146,11 @@ function LeaderboardContent() {
     navigator.clipboard.writeText(code);
     setSuccessMessage("Invite code copied!");
     setTimeout(() => setSuccessMessage(null), 2000);
+    if (selectedGroup) {
+      trackInviteCodeCopied({
+        group_member_count: selectedGroup.memberUids.length,
+      });
+    }
   };
 
   const selectedGroup = groups.find((g) => g.id === selectedGroupId);
@@ -120,7 +161,10 @@ function LeaderboardContent() {
         {/* Header */}
         <div className="flex items-center justify-between pb-6 pt-8">
           <button
-            onClick={() => router.push("/play")}
+            onClick={() => {
+              trackScreenTransition({ from_screen: "leaderboard", to_screen: "play" });
+              router.push("/play");
+            }}
             className="text-sm font-medium text-[#757575] hover:text-[#2D2D2D]"
           >
             &larr; Back

@@ -14,6 +14,12 @@ import {
   User,
 } from "firebase/auth";
 import { getFirebaseAuth } from "./firebase";
+import {
+  trackSignInAttempt,
+  trackSignInSuccess,
+  trackSignInError,
+  trackSignOut,
+} from "./analytics";
 
 interface AuthContextType {
   user: User | null;
@@ -43,12 +49,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const handleSignIn = async () => {
+    trackSignInAttempt();
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(getFirebaseAuth(), provider);
+      const result = await signInWithPopup(getFirebaseAuth(), provider);
+      trackSignInSuccess(result.user.uid);
     } catch (error: unknown) {
       const firebaseError = error as { code?: string; message?: string };
-      
+      trackSignInError(firebaseError.code || "unknown");
+
       // Show user-friendly error
       if (firebaseError.code === "auth/unauthorized-domain") {
         const currentDomain = window.location.hostname;
@@ -62,6 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const handleSignOut = async () => {
+    trackSignOut();
     await getFirebaseAuth().signOut();
   };
 

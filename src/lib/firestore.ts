@@ -159,7 +159,7 @@ export async function createGroup(
 export async function joinGroup(
   uid: string,
   inviteCode: string
-): Promise<{ groupId: string; groupName: string }> {
+): Promise<{ groupId: string; groupName: string; memberCount: number }> {
   const db = getFirebaseDb();
   const groupsRef = collection(db, "groups");
   const q = query(groupsRef, where("inviteCode", "==", inviteCode.toUpperCase()));
@@ -187,7 +187,7 @@ export async function joinGroup(
     groupIds: arrayUnion(groupId),
   });
 
-  return { groupId, groupName: data.name };
+  return { groupId, groupName: data.name, memberCount: data.memberUids.length + 1 };
 }
 
 export async function leaveGroup(uid: string, groupId: string): Promise<void> {
