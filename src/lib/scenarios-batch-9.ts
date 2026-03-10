@@ -544,7 +544,7 @@ export const SCENARIOS_BATCH_9: Scenario[] = [
     id: "b9_032",
     category: "BUNKERS_GREENS",
     tier: "official",
-    text: "Your ball is in a bunker with temporary water (casual water). There is no spot in the bunker that provides complete relief from the temporary water. What are your options?",
+    text: "Your ball is in a bunker with temporary water. There is no spot in the bunker that provides complete relief from the temporary water. What are your options?",
     choices: [
       "Take maximum available relief in the bunker (free), or take back-on-the-line relief outside the bunker for one penalty stroke",
       "You must play the ball as it lies — no relief for temporary water in bunkers",
@@ -1252,10 +1252,10 @@ export const SCENARIOS_BATCH_9: Scenario[] = [
     id: "b9_072",
     category: "BUNKERS_GREENS",
     tier: "competitor",
-    text: "In stroke play, your fellow competitor accidentally steps on your ball on the putting green, moving it. What is the ruling?",
+    text: "In stroke play, another player in your group accidentally steps on your ball on the putting green, moving it. What is the ruling?",
     choices: [
       "No penalty to anyone — replace the ball on its original spot",
-      "Your fellow competitor gets a one-stroke penalty",
+      "The other player gets a one-stroke penalty",
       "You get a one-stroke penalty for not protecting your ball",
       "Play the ball from its new position",
     ],
@@ -1263,7 +1263,7 @@ export const SCENARIOS_BATCH_9: Scenario[] = [
     rule: "Rule 13.1d(1), Rule 9.6",
     explanation:
       "On the putting green, if a ball at rest is accidentally moved by another player, their caddie, or an outside influence, there is no penalty to anyone. The ball must be replaced on its original spot (estimated if necessary). This is a special rule for the putting green.",
-    tags: ["putting green", "accidental movement", "fellow competitor", "replace"],
+    tags: ["putting green", "accidental movement", "another player", "replace"],
   },
   {
     id: "b9_073",

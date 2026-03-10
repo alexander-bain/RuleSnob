@@ -21,7 +21,7 @@ export const SCENARIOS_BATCH_11: Scenario[] = [
     correct: 0,
     rule: "Rule 17.1b",
     explanation:
-      "Under the 2023 Rules, there are no special restrictions on touching the ground or grounding your club in a penalty area. You may take practice swings that touch the ground, ground your club behind the ball, and touch loose impediments — all without penalty. The old restrictions from the water hazard rules were removed in the 2019 modernization.",
+      "Under Rule 17.1b, there are no special restrictions on touching the ground or grounding your club in a penalty area. You may take practice swings that touch the ground, ground your club behind the ball, and touch loose impediments — all without penalty. The old restrictions from the pre-2019 Rules were removed in the 2019 modernization.",
     tags: ["penalty area", "grounding club", "practice swing", "yellow stakes"],
   },
   {
@@ -203,7 +203,7 @@ export const SCENARIOS_BATCH_11: Scenario[] = [
       "Yes — yellow stakes define a penalty area regardless of whether water is present, and the same relief options apply",
       "No — without water, it should be treated as a no-play zone",
       "No — a penalty area must contain water to qualify",
-      "Yes, but you get free relief since there is no water hazard",
+      "Yes, but you get free relief since there is no water present",
     ],
     correct: 0,
     rule: "Rule 17.1, Definition of Penalty Area",
@@ -276,7 +276,7 @@ export const SCENARIOS_BATCH_11: Scenario[] = [
     correct: 0,
     rule: "Rule 17.1b",
     explanation:
-      "Under the current Rules, there are no restrictions on touching the ground, water, or loose impediments in a penalty area. The old prohibitions against testing the condition of a water hazard were eliminated in the 2019 Rules modernization. You may touch the water, move loose impediments, ground your club, etc., all without penalty.",
+      "Under Rule 17.1b, there are no restrictions on touching the ground, water, or loose impediments in a penalty area. The old prohibitions from the pre-2019 Rules were eliminated. You may touch the water, move loose impediments, ground your club, etc., all without penalty.",
     tags: ["penalty area", "touching water", "testing conditions", "no penalty"],
   },
   {
@@ -935,7 +935,7 @@ export const SCENARIOS_BATCH_11: Scenario[] = [
     id: "b11_055",
     category: "PENALTY_RELIEF",
     tier: "official",
-    text: "A player's ball is embedded in the lip of a bunker (part of the ball is below the sand surface). She declares it unplayable and wants to take the two-penalty-stroke option to drop outside the bunker. Her ball lies at the very front of the bunker, closest to the hole. The line from the hole through the ball goes forward through the green, not backward. What happens?",
+    text: "A player's ball is embedded in the lip of a bunker (part of the ball is below the sand surface). She declares it unplayable and wants to take the two-penalty-stroke option to drop outside the bunker. Her ball lies at the very front of the bunker, closest to the hole. The line from the hole through the ball goes forward into the general area, not backward. What happens?",
     choices: [
       "She cannot use this option effectively because the line does not go back behind the bunker — she must use one of the other unplayable options (stroke-and-distance or lateral/back-on-the-line within the bunker)",
       "She may drop on the green on the line for two penalty strokes",
@@ -1105,7 +1105,7 @@ export const SCENARIOS_BATCH_11: Scenario[] = [
     correct: 0,
     rule: "Rule 20.2e, Rule 3.3b(3)",
     explanation:
-      "The competition is not closed until the Committee says it is. If a penalty is discovered after the scorecard is submitted but before the competition is closed, the penalty is added. If the score recorded for a hole is lower than the actual score (after adding the penalty), the player is disqualified for signing an incorrect scorecard. The fellow competitor has no obligation to report but signing an incorrect scorecard (your own) leads to DQ.",
+      "The competition is not closed until the Committee says it is. If a penalty is discovered after the scorecard is submitted but before the competition is closed, the penalty is added. If the score recorded for a hole is lower than the actual score (after adding the penalty), the player is disqualified for signing an incorrect scorecard. Other players have no obligation to report, but signing an incorrect scorecard (your own) leads to DQ.",
     tags: ["stroke play", "incorrect scorecard", "disqualification", "penalty discovered"],
   },
   {

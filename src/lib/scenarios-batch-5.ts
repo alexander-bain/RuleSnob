@@ -61,7 +61,7 @@ export const SCENARIOS_BATCH_5: Scenario[] = [
       "The Committee may disqualify the player for serious misconduct under Rule 1.2a",
       "The player gets a two-stroke penalty automatically",
       "The player must repair the damage but faces no penalty",
-      "The player's opponent or fellow competitors decide the penalty",
+      "The player's opponent or other players in the group decide the penalty",
     ],
     correct: 0,
     rule: "Rule 1.2a",
@@ -112,7 +112,7 @@ export const SCENARIOS_BATCH_5: Scenario[] = [
       "Yes — the Committee can disqualify for serious misconduct under Rule 1.2a even without a Code of Conduct",
       "No — without an adopted Code of Conduct, the Committee has no authority to penalize conduct",
       "Yes, but only a two-stroke penalty can be applied",
-      "No — only fellow competitors can file a complaint",
+      "No — only other players in the group can file a complaint",
     ],
     correct: 0,
     rule: "Rule 1.2a",
@@ -308,7 +308,7 @@ export const SCENARIOS_BATCH_5: Scenario[] = [
       "Use reasonable judgment to estimate the spot based on all available information",
       "Treat the ball as lost and take stroke-and-distance relief",
       "Drop at the nearest point of known position",
-      "Ask a fellow competitor to determine the spot",
+      "Ask another player in your group to determine the spot",
     ],
     correct: 0,
     rule: "Rule 1.3b(2)",
@@ -554,7 +554,7 @@ export const SCENARIOS_BATCH_5: Scenario[] = [
     choices: [
       "While not required to know every Rule, a player is responsible for the penalties under any Rule they breach",
       "Yes — ignorance of a Rule is never an excuse and doubles the penalty",
-      "No — players can rely on opponents or fellow competitors to know the Rules",
+      "No — players can rely on opponents or other players to know the Rules",
       "Only Committee members need to know all the Rules",
     ],
     correct: 0,
@@ -672,17 +672,17 @@ export const SCENARIOS_BATCH_5: Scenario[] = [
     id: "b5_038",
     category: "FUNDAMENTALS",
     tier: "competitor",
-    text: "A player in stroke play calls a penalty on themselves for accidentally moving their ball. A fellow competitor disagrees and says no penalty should apply. What should the player do?",
+    text: "A player in stroke play calls a penalty on themselves for accidentally moving their ball. Another player in the group disagrees and says no penalty should apply. What should the player do?",
     choices: [
       "Apply the penalty as they see it — each player is responsible for their own penalties",
-      "Accept the fellow competitor's opinion since they had a better view",
+      "Accept the other player's opinion since they had a better view",
       "Play two balls: one with the penalty and one without",
       "Ask the group to vote on whether the ball moved",
     ],
     correct: 0,
     rule: "Rule 1.3a",
     explanation:
-      "Under Rule 1.3a, each player is responsible for applying their own penalties. If the player believes they caused the ball to move and a penalty applies, they should apply it regardless of what fellow competitors think. The player can also seek a ruling from the Committee or play two balls under Rule 20.1c(3) if genuinely uncertain.",
+      "Under Rule 1.3a, each player is responsible for applying their own penalties. If the player believes they caused the ball to move and a penalty applies, they should apply it regardless of what other players think. The player can also seek a ruling from the Committee or play two balls under Rule 20.1c(3) if genuinely uncertain.",
     tags: ["self-policing", "player responsibility", "penalty", "ball moved"],
   },
   {
@@ -1100,7 +1100,7 @@ export const SCENARIOS_BATCH_5: Scenario[] = [
     correct: 0,
     rule: "Rule 2.2, Definition of Penalty Area",
     explanation:
-      "Red stakes or lines define a red penalty area, which was formerly called a 'lateral water hazard.' In a red penalty area, the player has the option of lateral relief (dropping within two club-lengths of where the ball last crossed the edge) in addition to back-on-the-line relief and stroke-and-distance relief.",
+      "Under Rule 2.2, red stakes or lines define a red penalty area (formerly called a 'lateral water hazard' under the pre-2019 Rules). In a red penalty area, the player has the option of lateral relief (dropping within two club-lengths of where the ball last crossed the edge) in addition to back-on-the-line relief and stroke-and-distance relief.",
     tags: ["penalty area", "red stakes", "lateral relief", "course markings"],
   },
   {
@@ -1117,7 +1117,7 @@ export const SCENARIOS_BATCH_5: Scenario[] = [
     correct: 0,
     rule: "Rule 2.2, Definition of Penalty Area",
     explanation:
-      "Yellow stakes or lines define a yellow penalty area (formerly called a 'water hazard'). From a yellow penalty area, the player may take stroke-and-distance relief or back-on-the-line relief, but lateral relief is NOT available (unlike from a red penalty area).",
+      "Under Rule 2.2, yellow stakes or lines define a yellow penalty area (formerly called a 'water hazard' under the pre-2019 Rules). From a yellow penalty area, the player may take stroke-and-distance relief or back-on-the-line relief, but lateral relief is NOT available (unlike from a red penalty area).",
     tags: ["penalty area", "yellow stakes", "no lateral relief", "course markings"],
   },
   {

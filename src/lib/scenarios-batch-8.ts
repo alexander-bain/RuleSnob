@@ -606,7 +606,7 @@ export const SCENARIOS_BATCH_8: Scenario[] = [
     id: "b8_034",
     category: "PLAYING_BALL",
     tier: "weekend",
-    text: "Your ball lands in a muddy area and is sitting in a patch of casual water (temporary water). Can you improve your lie before playing?",
+    text: "Your ball lands in a muddy area and is sitting in a patch of temporary water. Can you improve your lie before playing?",
     choices: [
       "You must play the ball as it lies or take relief from the temporary water under Rule 16.1 — you may not improve the lie",
       "Yes — you may move mud away from the ball in temporary water",
@@ -910,18 +910,18 @@ export const SCENARIOS_BATCH_8: Scenario[] = [
     id: "b8_051",
     category: "PLAYING_BALL",
     tier: "competitor",
-    text: "A fellow competitor in stroke play accidentally moves your ball while walking to their own ball (not during search). What is the ruling?",
+    text: "Another player in your stroke-play group accidentally moves your ball while walking to their own ball (not during search). What is the ruling?",
     choices: [
-      "No penalty to anyone; replace the ball on its original spot — the fellow competitor is an outside influence in stroke play",
-      "One-stroke penalty to the fellow competitor; replace the ball",
+      "No penalty to anyone; replace the ball on its original spot — another player in stroke play is an outside influence",
+      "One-stroke penalty to the other player; replace the ball",
       "One-stroke penalty to you; replace the ball",
       "No penalty; play the ball from its new position",
     ],
     correct: 0,
     rule: "Rule 9.6",
     explanation:
-      "Under Rule 9.6, in stroke play a fellow competitor is an outside influence (unlike an opponent in match play under Rule 9.5). When an outside influence moves a ball, there is no penalty to anyone, and the ball must be replaced on its original spot.",
-    tags: ["outside influence", "fellow competitor", "stroke play", "no penalty"],
+      "Under Rule 9.6, in stroke play another player in your group is an outside influence (unlike an opponent in match play under Rule 9.5). When an outside influence moves a ball, there is no penalty to anyone, and the ball must be replaced on its original spot.",
+    tags: ["outside influence", "another player", "stroke play", "no penalty"],
   },
 
   // --- Rule 9.7: Ball-Marker Lifted or Moved ---
@@ -1283,18 +1283,18 @@ export const SCENARIOS_BATCH_8: Scenario[] = [
     id: "b8_072",
     category: "PLAYING_BALL",
     tier: "competitor",
-    text: "In stroke play, you notice your fellow competitor's caddie is standing behind the fellow competitor while the fellow competitor is putting. Should you be concerned about a penalty to you?",
+    text: "In stroke play, you notice another player's caddie is standing behind that player while they are putting. Should you be concerned about a penalty to you?",
     choices: [
-      "No — a breach of Rule 10.2b(4) by your fellow competitor's caddie only penalizes your fellow competitor, not you",
+      "No — a breach of Rule 10.2b(4) by another player's caddie only penalizes that player, not you",
       "Yes — if you see a breach and do not report it, you are penalized too",
-      "No, because the rule does not apply to caddies of fellow competitors",
+      "No, because the rule does not apply to caddies of other players in stroke play",
       "Yes — both players in the group receive a penalty",
     ],
     correct: 0,
     rule: "Rule 10.2b(4)",
     explanation:
-      "Under Rule 10.2b(4), the restriction on caddie positioning behind the line of play applies to each player individually. A fellow competitor's caddie standing behind the fellow competitor is a potential breach for the fellow competitor only. You have no obligation to warn them, and no penalty applies to you.",
-    tags: ["caddie position", "fellow competitor", "stroke play", "no penalty to you"],
+      "Under Rule 10.2b(4), the restriction on caddie positioning behind the line of play applies to each player individually. Another player's caddie standing behind that player is a potential breach for that player only. You have no obligation to warn them, and no penalty applies to you.",
+    tags: ["caddie position", "another player", "stroke play", "no penalty to you"],
   },
 
   // --- Rule 10.2: Other Advice and Help Scenarios ---

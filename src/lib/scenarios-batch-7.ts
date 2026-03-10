@@ -547,7 +547,7 @@ export const SCENARIOS_BATCH_7: Scenario[] = [
     choices: [
       "Yes — you are allowed to finish the hole you are playing during a non-dangerous suspension",
       "No — you must stop as soon as you reach a natural break point",
-      "Only if your fellow competitors agree",
+      "Only if the other players in your group agree",
       "No — once you have played a stroke after the signal, you must stop immediately",
     ],
     correct: 0,
@@ -1255,7 +1255,7 @@ export const SCENARIOS_BATCH_7: Scenario[] = [
     id: "b7_071",
     category: "PLAYING_ROUND",
     tier: "weekend",
-    text: "In stroke play, you play out of turn (your ball is closer to the hole than your fellow competitor's). What is the penalty?",
+    text: "In stroke play, you play out of turn (your ball is closer to the hole than another player's). What is the penalty?",
     choices: [
       "No penalty — there is no penalty for playing out of turn in stroke play",
       "Two-stroke penalty",

@@ -465,7 +465,7 @@ export const SCENARIOS_BATCH_1: Scenario[] = [
     tier: "weekend",
     text: "You find a ball in the woods that might be yours, but it is partially covered by leaves and mud. Can you lift it to identify it?",
     choices: [
-      "Yes — you may lift to identify it, but first mark its position and give your opponent or fellow competitor the chance to observe",
+      "Yes — you may lift to identify it, but first mark its position and give your opponent or marker the chance to observe",
       "No — you must play it as it lies if you think it might be yours",
       "Yes — just pick it up and check; no need to mark it",
       "Only a rules official can identify a ball in these circumstances",
@@ -473,14 +473,14 @@ export const SCENARIOS_BATCH_1: Scenario[] = [
     correct: 0,
     rule: "Rule 7.3",
     explanation:
-      "Under Rule 7.3, if a ball might be yours but you cannot identify it as it lies, you may lift it to identify it. You must first mark the spot and may not clean the ball more than needed for identification. You should give your opponent or fellow competitor the opportunity to observe the process.",
+      "Under Rule 7.3, if a ball might be yours but you cannot identify it as it lies, you may lift it to identify it. You must first mark the spot and may not clean the ball more than needed for identification. You should give your opponent (match play) or another player or marker (stroke play) the opportunity to observe the process.",
     tags: ["identification", "lift ball", "mark position", "search"],
   },
   {
     id: "gen_f28",
     category: "FUNDAMENTALS",
     tier: "competitor",
-    text: "Both you and your fellow competitor play the same brand, model, and number of golf ball. Neither of you put an identifying mark on your balls. Both balls are found near each other in the rough. What happens?",
+    text: "In stroke play, both you and another player in your group play the same brand, model, and number of golf ball. Neither of you put an identifying mark on your balls. Both balls are found near each other in the rough. What happens?",
     choices: [
       "If neither player can identify which ball is theirs, both balls are considered lost",
       "Each player plays the ball closest to the hole",
@@ -517,7 +517,7 @@ export const SCENARIOS_BATCH_1: Scenario[] = [
     id: "gen_f30",
     category: "FUNDAMENTALS",
     tier: "weekend",
-    text: "You notice a fellow competitor in stroke play is not raking bunkers after playing from them. Is this a Rules violation?",
+    text: "You notice another player in your stroke-play group is not raking bunkers after playing from them. Is this a Rules violation?",
     choices: [
       "No — raking bunkers is expected etiquette but there is no penalty under the Rules for failing to do so",
       "Yes — failure to rake a bunker is a two-stroke penalty",
@@ -726,7 +726,7 @@ export const SCENARIOS_BATCH_1: Scenario[] = [
     correct: 0,
     rule: "Rule 4.2c",
     explanation:
-      "Under Rule 4.2c, if you reasonably believe your ball has become cut, cracked, or out of round during the hole, you may mark and lift it to examine it. You should announce your intention and give your opponent or fellow competitor the opportunity to observe. If the ball is damaged, substitute a new ball on the original spot.",
+      "Under Rule 4.2c, if you reasonably believe your ball has become cut, cracked, or out of round during the hole, you may mark and lift it to examine it. You should announce your intention and give your opponent (match play) or another player or marker (stroke play) the opportunity to observe. If the ball is damaged, substitute a new ball on the original spot.",
     tags: ["ball", "damaged ball", "out of round", "lift ball", "substitution"],
   },
   {
@@ -987,7 +987,7 @@ export const SCENARIOS_BATCH_1: Scenario[] = [
       "Two-stroke penalty; you must cancel the stroke and replay from within the teeing area before making a stroke on the next hole",
       "No penalty — the ball is in play",
       "One-stroke penalty; play the ball as it lies",
-      "Your fellow competitor may require you to replay or let it stand",
+      "Another player in your group may require you to replay or let it stand",
     ],
     correct: 0,
     rule: "Rule 6.1b(2)",
@@ -1118,7 +1118,7 @@ export const SCENARIOS_BATCH_1: Scenario[] = [
     id: "gen_r19",
     category: "PLAYING_ROUND",
     tier: "competitor",
-    text: "You ask your caddie to find out what club your fellow competitor just used for their approach shot. Is this a breach of the advice rule?",
+    text: "You ask your caddie to find out what club another player in your group just used for their approach shot. Is this a breach of the advice rule?",
     choices: [
       "No — once a stroke is made, the club used is considered public information and asking about it is not advice",
       "Yes — asking about another player's club selection is giving or getting advice",
@@ -1169,7 +1169,7 @@ export const SCENARIOS_BATCH_1: Scenario[] = [
     id: "gen_r22",
     category: "PLAYING_ROUND",
     tier: "official",
-    text: "In stroke play, you play your fellow competitor's ball from the rough. They then play your ball, neither of you realizing the swap. What happens?",
+    text: "In stroke play, you play another player's ball from the rough. They then play your ball, neither of you realizing the swap. What happens?",
     choices: [
       "Both players get a two-stroke penalty; each must go back and play their correct ball from where the wrong ball was played",
       "No penalty since it was mutual and unintentional",

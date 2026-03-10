@@ -546,17 +546,17 @@ export const SCENARIOS_BATCH_2: Scenario[] = [
     id: "gen_b32",
     category: "PLAYING_BALL",
     tier: "competitor",
-    text: "Your fellow competitor in stroke play accidentally moves your ball while searching for their own ball. What happens?",
+    text: "Another player in your stroke-play group accidentally moves your ball while searching for their own ball. What happens?",
     choices: [
       "No penalty to anyone; replace your ball on its original spot",
-      "Your fellow competitor gets a one-stroke penalty; replace your ball",
+      "The other player gets a one-stroke penalty; replace your ball",
       "You get a one-stroke penalty; replace your ball",
       "No penalty; play your ball from the new spot",
     ],
     correct: 0,
     rule: "Rule 9.6",
     explanation:
-      "In stroke play, a fellow competitor is an outside influence. Under Rule 9.6, when an outside influence moves your ball at rest, there is no penalty to anyone. You must replace your ball on its original spot (estimated if necessary).",
+      "In stroke play, another player in your group is an outside influence (not an opponent as in match play). Under Rule 9.6, when an outside influence moves your ball at rest, there is no penalty to anyone. You must replace your ball on its original spot (estimated if necessary).",
     tags: ["outside influence", "ball at rest", "accidentally moved", "stroke play"],
   },
   {
@@ -573,7 +573,7 @@ export const SCENARIOS_BATCH_2: Scenario[] = [
     correct: 0,
     rule: "Rule 7.4",
     explanation:
-      "Under Rule 7.4, if a ball is accidentally moved during a search by anyone (the player, opponent, fellow competitor, or anyone else), there is no penalty. The ball must be replaced on its original spot. The search protection overrides the normal Rule 9.5b opponent penalty.",
+      "Under Rule 7.4, if a ball is accidentally moved during a search by anyone (the player, opponent, another player, or anyone else), there is no penalty. The ball must be replaced on its original spot. The search protection overrides the normal Rule 9.5b opponent penalty.",
     tags: ["match play", "accidentally moved", "ball at rest", "searching"],
   },
   {
@@ -1015,17 +1015,17 @@ export const SCENARIOS_BATCH_2: Scenario[] = [
     id: "gen_b59",
     category: "PLAYING_BALL",
     tier: "weekend",
-    text: "You play a shot from the fairway and the ball accidentally hits a fellow competitor walking ahead. What happens in stroke play?",
+    text: "You play a shot from the fairway and the ball accidentally hits another player walking ahead. What happens in stroke play?",
     choices: [
       "No penalty to either player; play the ball as it lies",
       "One-stroke penalty on you; play as it lies",
       "Two-stroke penalty on you; replay the shot",
-      "No penalty; the fellow competitor may place the ball where they want",
+      "No penalty; the other player may place the ball where they want",
     ],
     correct: 0,
     rule: "Rule 11.1a",
     explanation:
-      "Under Rule 11.1a, if your ball in motion accidentally hits any person (including a fellow competitor), there is no penalty to anyone. You must play the ball as it lies.",
+      "Under Rule 11.1a, if your ball in motion accidentally hits any person (including another player in your group), there is no penalty to anyone. You must play the ball as it lies.",
     tags: ["ball in motion", "outside influence", "stroke play"],
   },
   {

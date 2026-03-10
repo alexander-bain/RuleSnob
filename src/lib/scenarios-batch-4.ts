@@ -14,7 +14,7 @@ export const SCENARIOS_BATCH_4: Scenario[] = [
     text: "Your tee shot on a par 3 splashes into a pond marked with yellow stakes. You decide to take relief. Where can you drop?",
     choices: [
       "On a line from the hole through where the ball last crossed the edge of the penalty area, going back as far as you like — with one-stroke penalty",
-      "Within two club-lengths of where the ball entered the water, not nearer the hole",
+      "Within two club-lengths of where the ball last crossed the edge of the penalty area, not nearer the hole",
       "Anywhere on the fairway between the tee and the penalty area",
       "On either side of the penalty area within one club-length",
     ],
@@ -189,9 +189,9 @@ export const SCENARIOS_BATCH_4: Scenario[] = [
       "Only during a practice swing, not when addressing the ball",
     ],
     correct: 0,
-    rule: "Rule 17.1a",
+    rule: "Rule 17.1b",
     explanation:
-      "Under the current Rules (since 2019), you may ground your club in a penalty area without penalty. The old restriction against grounding your club in a water hazard was removed. You may also touch loose impediments and remove movable obstructions in a penalty area.",
+      "Under Rule 17.1b, you may ground your club in a penalty area without penalty. The old restriction against grounding your club in what was previously called a 'water hazard' was removed in 2019. You may also touch loose impediments and remove movable obstructions in a penalty area.",
     tags: ["penalty area", "grounding club", "playing from penalty area"],
   },
   {
@@ -759,9 +759,9 @@ export const SCENARIOS_BATCH_4: Scenario[] = [
       "Only with a practice swing, not by touching the ground with your hand",
     ],
     correct: 0,
-    rule: "Rule 17.1a",
+    rule: "Rule 17.1b",
     explanation:
-      "The 2019 Rules removed the old restrictions on touching or testing the ground in a penalty area (formerly called a water hazard). You may now ground your club, take practice swings touching the ground, remove loose impediments, and touch the water — all without penalty.",
+      "Under Rule 17.1b, there are no restrictions on touching the ground in a penalty area. You may ground your club, take practice swings touching the ground, remove loose impediments, and touch the water — all without penalty. The old restrictions were removed in 2019.",
     tags: ["penalty area", "grounding club", "playing from penalty area", "testing conditions"],
   },
   {
@@ -797,7 +797,7 @@ export const SCENARIOS_BATCH_4: Scenario[] = [
       "Play two balls: one as it lies and one with relief, then report the situation to the Committee before signing your scorecard",
       "Take the relief and hope it is correct",
       "Play the ball as it lies and report after the round",
-      "Ask your fellow competitor to decide",
+      "Ask another player in your group to decide",
     ],
     correct: 0,
     rule: "Rule 20.1c(3)",
@@ -1263,7 +1263,7 @@ export const SCENARIOS_BATCH_4: Scenario[] = [
     id: "gen_ri28",
     category: "RESOLVING",
     tier: "official",
-    text: "In stroke play, a player unknowingly breaches a Rule (carrying 15 clubs). A fellow competitor notices after the round but before the competition closes. What should the fellow competitor do?",
+    text: "In stroke play, a player unknowingly breaches a Rule (carrying 15 clubs). Another player in the group notices after the round but before the competition closes. What should that player do?",
     choices: [
       "Inform the player or the Committee — all players have a responsibility to protect the field",
       "Nothing — it is not their responsibility to report another player's breach",
@@ -1285,7 +1285,7 @@ export const SCENARIOS_BATCH_4: Scenario[] = [
       "The Committee adds the penalty strokes to the player's score — the player is not disqualified because they were unaware of the penalty",
       "The player is disqualified for returning an incorrect scorecard",
       "The scorecard stands as signed — it cannot be changed",
-      "The Committee can only act if a fellow competitor reports it",
+      "The Committee can only act if another player reports it",
     ],
     correct: 0,
     rule: "Rule 3.3b(3), Exception",

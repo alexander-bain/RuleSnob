@@ -432,7 +432,7 @@ export const SCENARIOS_BATCH_3: Scenario[] = [
     correct: 0,
     rule: "Rule 13.1d(1)",
     explanation:
-      "Under Rule 13.1d(1), there is no penalty if you (or your opponent or fellow competitor) accidentally cause your ball to move on the putting green. Simply replace the ball on its original spot (or estimated spot). This exception applies only on the putting green.",
+      "Under Rule 13.1d(1), there is no penalty if you (or your opponent in match play, or another player in stroke play) accidentally cause your ball to move on the putting green. Simply replace the ball on its original spot (or estimated spot). This exception applies only on the putting green.",
     tags: ["putting green", "accidentally moved", "no penalty", "replace"],
   },
 
@@ -633,7 +633,7 @@ export const SCENARIOS_BATCH_3: Scenario[] = [
     tier: "weekend",
     text: "You want to lift your ball to identify it in the rough. Must you tell anyone before lifting?",
     choices: [
-      "Yes — you must first announce your intention to lift, mark the spot, and give your opponent or fellow competitor a chance to observe the process",
+      "Yes — you must first announce your intention to lift, mark the spot, and give your opponent (match play) or marker (stroke play) a chance to observe the process",
       "No — you can lift to identify at any time without telling anyone",
       "Only in match play, not in stroke play",
       "Only if a rules official is present",
@@ -641,7 +641,7 @@ export const SCENARIOS_BATCH_3: Scenario[] = [
     correct: 0,
     rule: "Rule 7.3",
     explanation:
-      "Under Rule 7.3, before lifting a ball to identify it, you must announce your intention to the opponent (match play) or fellow competitor (stroke play) and give them a chance to observe. You must mark the spot before lifting. Failure to follow this procedure results in a one-stroke penalty.",
+      "Under Rule 7.3, before lifting a ball to identify it, you must announce your intention to another player or your marker and give them a chance to observe. You must mark the spot before lifting. Failure to follow this procedure results in a one-stroke penalty.",
     tags: ["mark ball", "identification", "lifting", "procedure"],
   },
   {
@@ -682,18 +682,18 @@ export const SCENARIOS_BATCH_3: Scenario[] = [
     id: "gen_lr15",
     category: "LIFTING_RETURNING",
     tier: "weekend",
-    text: "Your fellow competitor in stroke play lifts your ball from the fairway without your authorization and without any Rule allowing it. What is the ruling?",
+    text: "In match play, your opponent lifts your ball from the fairway without your authorization and without any Rule allowing it. What is the ruling?",
     choices: [
-      "Your fellow competitor gets a one-stroke penalty. Your ball must be replaced on its original spot.",
+      "Your opponent gets a one-stroke penalty. Your ball must be replaced on its original spot.",
       "No penalty — any player can lift any ball",
       "You get a one-stroke penalty because it's your ball",
-      "Your fellow competitor is disqualified from the hole",
+      "Your opponent is disqualified from the hole",
     ],
     correct: 0,
     rule: "Rule 9.5b",
     explanation:
-      "Under Rule 9.5b, if another player lifts your ball at rest without authorization and without a Rule allowing it, that player receives a one-stroke penalty. Your ball must be replaced on its original spot (estimated if not known).",
-    tags: ["lifting", "stroke play", "penalty", "unauthorized"],
+      "Under Rule 9.5b, if your opponent lifts or moves your ball at rest without authorization and without a Rule allowing it, the opponent gets one penalty stroke and the ball must be replaced on its original spot. In stroke play, another player is an outside influence, and there would be no penalty to anyone under Rule 9.6.",
+    tags: ["lifting", "match play", "penalty", "unauthorized"],
   },
   {
     id: "gen_lr16",
@@ -998,7 +998,7 @@ export const SCENARIOS_BATCH_3: Scenario[] = [
     id: "gen_fr13",
     category: "FREE_RELIEF",
     tier: "weekend",
-    text: "Your ball is sitting in temporary water (casual water) on the fairway. You take free relief. The nearest point of complete relief is in the rough. Must you drop in the rough?",
+    text: "Your ball is sitting in temporary water on the fairway. You take free relief. The nearest point of complete relief is in the rough. Must you drop in the rough?",
     choices: [
       "Yes — you must use the nearest point of complete relief even if it puts you in a worse area like the rough",
       "No — you may choose any dry spot on the fairway",
@@ -1009,7 +1009,7 @@ export const SCENARIOS_BATCH_3: Scenario[] = [
     rule: "Rule 16.1b",
     explanation:
       "The nearest point of complete relief is determined by the specific location of the ball and the condition. If the nearest point where the temporary water no longer interferes is in the rough, that is where you must take relief. You don't get to choose a more favorable spot. You always have the option to play from the temporary water instead.",
-    tags: ["temporary water", "casual water", "nearest point of relief", "rough", "fairway"],
+    tags: ["temporary water", "nearest point of relief", "rough", "fairway"],
   },
   {
     id: "gen_fr14",
@@ -1026,7 +1026,7 @@ export const SCENARIOS_BATCH_3: Scenario[] = [
     rule: "Rule 16.1c",
     explanation:
       "Under Rule 16.1c, when complete relief is not available in a bunker, you may take free relief at the point of maximum available relief in the bunker (the spot that gives the most relief). Alternatively, for one penalty stroke, you may take back-on-the-line relief outside the bunker, keeping the point where the ball lay between you and the hole.",
-    tags: ["bunker", "temporary water", "casual water", "free relief", "back-on-the-line"],
+    tags: ["bunker", "temporary water", "free relief", "back-on-the-line"],
   },
   {
     id: "gen_fr15",
@@ -1134,7 +1134,7 @@ export const SCENARIOS_BATCH_3: Scenario[] = [
     id: "gen_fr21",
     category: "FREE_RELIEF",
     tier: "weekend",
-    text: "After heavy rain, there is temporary water (casual water) on the putting green directly on your line of putt. Your ball is on the green but not in the water. Do you get relief?",
+    text: "After heavy rain, there is temporary water on the putting green directly on your line of putt. Your ball is on the green but not in the water. Do you get relief?",
     choices: [
       "Yes — on the putting green, you get free relief if temporary water intervenes on your line of putt, even if the ball itself is not in the water",
       "No — relief is only available if the ball is sitting in the water",
@@ -1145,24 +1145,24 @@ export const SCENARIOS_BATCH_3: Scenario[] = [
     rule: "Rule 16.1d",
     explanation:
       "On the putting green, the definition of interference from abnormal course conditions is broader. Under Rule 16.1d, interference exists when temporary water on the green intervenes on your line of putt between your ball and the hole, even if the ball itself is not in the water. You get free relief by placing the ball at the nearest point of complete relief (on the green or in the general area).",
-    tags: ["putting green", "temporary water", "casual water", "line of putt", "free relief"],
+    tags: ["putting green", "temporary water", "line of putt", "free relief"],
   },
   {
     id: "gen_fr22",
     category: "FREE_RELIEF",
     tier: "competitor",
-    text: "Your ball is in a red penalty area and sitting in temporary water (casual water). Can you take free relief from the temporary water?",
+    text: "Your ball is in a red penalty area and sitting in temporary water. Can you take free relief from the temporary water?",
     choices: [
       "No — there is no free relief from abnormal course conditions when your ball is in a penalty area. Your options are to play it as it lies or take penalty area relief.",
       "Yes — temporary water always gives free relief",
-      "Yes — free relief from casual water applies everywhere",
+      "Yes — free relief from temporary water applies everywhere",
       "No free relief, but you get a one-stroke penalty drop within the penalty area",
     ],
     correct: 0,
     rule: "Rule 16.1a",
     explanation:
       "Under Rule 16.1a, free relief from abnormal course conditions (including temporary water) is NOT available when your ball is in a penalty area. Your options are to play the ball as it lies in the penalty area or take penalty area relief under Rule 17 with a one-stroke penalty.",
-    tags: ["penalty area", "temporary water", "casual water", "no relief"],
+    tags: ["penalty area", "temporary water", "no relief"],
   },
   {
     id: "gen_fr23",
@@ -1281,7 +1281,7 @@ export const SCENARIOS_BATCH_3: Scenario[] = [
     rule: "Definition of Temporary Water",
     explanation:
       "The definition of temporary water states it is a temporary accumulation of water that is visible on the surface of the ground before, during, or after the player takes a stance. Water that becomes visible when you take your normal stance (without excessive pressing) qualifies as temporary water, entitling you to free relief.",
-    tags: ["temporary water", "casual water", "stance", "fairway", "free relief"],
+    tags: ["temporary water", "stance", "fairway", "free relief"],
   },
   {
     id: "gen_fr30",

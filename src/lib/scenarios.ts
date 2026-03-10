@@ -76,7 +76,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 1,
     rule: "Rule 18.1",
     explanation:
-      "When your ball is out of bounds, you must take stroke-and-distance relief: go back to where you last played and play again under one-stroke penalty. (Note: some courses offer a Local Rule alternative, but the base rule is stroke and distance.)",
+      "Under Rule 18.1, when your ball is out of bounds, you must take stroke-and-distance relief: go back to where you last played and play again under one-stroke penalty. (Note: some courses offer a Local Rule alternative, but the base rule is stroke and distance.)",
     tags: ["OB", "out of bounds", "white stakes", "stroke and distance", "penalty"],
   },
   {
@@ -93,7 +93,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 1,
     rule: "Rule 6.1b(1)",
     explanation:
-      "In match play, if you play from outside the teeing area, there is no penalty but your opponent may cancel the stroke and require you to replay from within the teeing area.",
+      "Under Rule 6.1b(1), in match play, if you play from outside the teeing area, there is no penalty but your opponent may cancel the stroke and require you to replay from within the teeing area.",
     tags: ["teeing area", "tee markers", "match play", "tee shot"],
   },
   {
@@ -110,7 +110,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 4.1b",
     explanation:
-      "In stroke play, the penalty for carrying excess clubs is two strokes for each hole where a breach occurred, with a maximum of four penalty strokes (applied to the first two holes). You must immediately declare which club is out of play.",
+      "Under Rule 4.1b, in stroke play, the penalty for carrying excess clubs is two strokes for each hole where a breach occurred, with a maximum of four penalty strokes (applied to the first two holes). You must immediately declare which club is out of play.",
     tags: ["15 clubs", "equipment", "stroke play", "penalty", "excess clubs"],
   },
   {
@@ -127,7 +127,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 18.2a(1)",
     explanation:
-      "The 3-minute search time begins when you or your caddie arrive at the area where the ball is likely to be and begin to search.",
+      "Under Rule 18.2a(1), the 3-minute search time begins when you or your caddie arrive at the area where the ball is likely to be and begin to search.",
     tags: ["lost ball", "searching", "3 minutes", "search time"],
   },
 
@@ -146,17 +146,17 @@ export const SCENARIOS: Scenario[] = [
     correct: 1,
     rule: "Definition of Stroke, Rule 6.2b(5)",
     explanation:
-      "A stroke requires intent to hit the ball. Since this was a practice swing with no intention to strike the ball, it is not a stroke. Simply re-tee without penalty.",
+      "Under the Definition of Stroke, a stroke requires intent to hit the ball. Since this was a practice swing with no intention to strike the ball, it is not a stroke. Simply re-tee without penalty.",
     tags: ["practice swing", "teeing area", "intent", "no penalty", "tee shot"],
   },
   {
     id: "r2",
     category: "PLAYING_ROUND",
     tier: "competitor",
-    text: "In stroke play, you and your fellow competitor disagree about a ruling. You are unsure of the correct procedure. What should you do?",
+    text: "In stroke play, you and another player in your group disagree about a ruling. You are unsure of the correct procedure. What should you do?",
     choices: [
       "Play the hole with two balls, report to the Committee before signing your card",
-      "Follow the ruling your fellow competitor suggests",
+      "Follow the ruling the other player suggests",
       "Stop play and wait for a rules official",
       "Play the hole and sort it out after the round",
     ],
@@ -180,7 +180,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 5.7a",
     explanation:
-      "When the Committee suspends play with an immediate suspension (typically for dangerous weather like lightning), all players must stop play immediately. This is different from a normal suspension where you may finish the hole.",
+      "Under Rule 5.7a, when the Committee suspends play with an immediate suspension (typically for dangerous weather like lightning), all players must stop play immediately. This is different from a normal suspension where you may finish the hole.",
     tags: ["lightning", "suspension", "dangerous situation", "stop play"],
   },
   {
@@ -197,7 +197,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 5.5b",
     explanation:
-      "Between the play of two holes, you may practice putting or chipping on or near the putting green of the hole just completed, any practice green, or the next teeing area \u2014 as long as the Committee hasn\u2019t restricted it and you don\u2019t unreasonably delay play.",
+      "Under Rule 5.5b, between the play of two holes, you may practice putting or chipping on or near the putting green of the hole just completed, any practice green, or the next teeing area \u2014 as long as the Committee hasn\u2019t restricted it and you don\u2019t unreasonably delay play.",
     tags: ["practice", "between holes", "putting green", "stroke play"],
   },
   {
@@ -214,7 +214,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 10.2a",
     explanation:
-      "In stroke play (individual), giving advice to another player results in a two-stroke penalty (the general penalty) on the player who gave the advice. Advice means any verbal comment or action intended to influence a player\u2019s club selection, shot technique, or play strategy.",
+      "Under Rule 10.2a, in stroke play (individual), giving advice to another player results in a two-stroke penalty (the general penalty) on the player who gave the advice. Advice means any verbal comment or action intended to influence a player\u2019s club selection, shot technique, or play strategy.",
     tags: ["advice", "club selection", "stroke play", "penalty"],
   },
 
@@ -250,7 +250,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 16.1b",
     explanation:
-      "A cart path is an immovable obstruction. You are entitled to free relief: find the nearest point of complete relief (where the path doesn\u2019t interfere with your stance, swing, or ball), no nearer the hole, and drop within one club-length of that point.",
+      "Under Rule 16.1b, a cart path is an immovable obstruction. You are entitled to free relief: find the nearest point of complete relief (where the path doesn\u2019t interfere with your stance, swing, or ball), no nearer the hole, and drop within one club-length of that point.",
     tags: ["cart path", "immovable obstruction", "free relief", "fairway", "nearest point"],
   },
   {
@@ -267,7 +267,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 18.3a",
     explanation:
-      "When you think your ball may be lost outside a penalty area (or out of bounds), you should play a provisional ball. This saves time \u2014 if the original is found, you pick up the provisional; if not, the provisional is in play under stroke-and-distance penalty.",
+      "Under Rule 18.3a, when you think your ball may be lost outside a penalty area (or out of bounds), you should play a provisional ball. This saves time \u2014 if the original is found, you pick up the provisional; if not, the provisional is in play under stroke-and-distance penalty.",
     tags: ["provisional", "lost ball", "tee shot", "stroke and distance"],
   },
   {
@@ -284,7 +284,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 9.3",
     explanation:
-      "If natural forces (wind, gravity, water) cause your ball at rest to move, there is generally no penalty and you play the ball from its new position. (Exception: on the putting green after your ball has been lifted and replaced \u2014 see Rule 13.1d.)",
+      "Under Rule 9.3, if natural forces (wind, gravity, water) cause your ball at rest to move, there is generally no penalty and you play the ball from its new position. (Exception: on the putting green after your ball has been lifted and replaced \u2014 see Rule 13.1d.)",
     tags: ["ball moved", "natural forces", "wind", "fairway", "no penalty"],
   },
   {
@@ -301,7 +301,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 11.1a",
     explanation:
-      "Under the current Rules of Golf, if your ball in motion accidentally hits you, your equipment, or your caddie, there is no penalty. Play the ball as it lies.",
+      "Under Rule 11.1a, if your ball in motion accidentally hits you, your equipment, or your caddie, there is no penalty. Play the ball as it lies.",
     tags: ["ball in motion", "equipment", "deflection", "no penalty", "stroke play"],
   },
   {
@@ -318,7 +318,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 6.3c",
     explanation:
-      "Playing a wrong ball in stroke play results in a two-stroke penalty. Strokes made with the wrong ball do not count. You must correct the mistake by playing your original ball. If you don\u2019t correct it before making a stroke on the next tee, you are disqualified.",
+      "Under Rule 6.3c, playing a wrong ball in stroke play results in a two-stroke penalty. Strokes made with the wrong ball do not count. You must correct the mistake by playing your original ball. If you don\u2019t correct it before making a stroke on the next tee, you are disqualified.",
     tags: ["wrong ball", "stroke play", "penalty", "rough", "disqualification"],
   },
   {
@@ -335,7 +335,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Definition of Abnormal Course Conditions",
     explanation:
-      "A divot hole is not an abnormal course condition under the Rules \u2014 even in the middle of the fairway. You must play the ball as it lies or take an unplayable lie with penalty. (Some courses adopt a preferred lies Local Rule during certain conditions, but that\u2019s separate.)",
+      "Under the Definitions, a divot hole is not an abnormal course condition \u2014 even in the middle of the fairway. You must play the ball as it lies or take an unplayable lie with penalty. (Some courses adopt a preferred lies Local Rule during certain conditions, but that\u2019s separate.)",
     tags: ["divot", "fairway", "play it as it lies", "no relief"],
   },
   {
@@ -422,7 +422,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 15.1a",
     explanation:
-      "Under the current Rules (since 2019), you may remove loose impediments in a bunker without penalty. This includes leaves, twigs, and stones. If your ball moves while removing the impediment, it must be replaced.",
+      "Under Rule 15.1a, you may remove loose impediments anywhere on the course without penalty, including in bunkers. This includes leaves, twigs, and stones. If your ball moves while removing the impediment, it must be replaced (with a one-stroke penalty outside the putting green under Rule 15.1b).",
     tags: ["bunker", "loose impediment", "leaf", "no penalty"],
   },
   {
@@ -439,7 +439,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 19.3",
     explanation:
-      "For an unplayable ball in a bunker, you have the normal three options (stroke and distance, back-on-the-line, lateral) each for one stroke \u2014 but the back-on-the-line and lateral drops must stay in the bunker. For an additional penalty stroke (two total), you may drop outside the bunker on the back-on-the-line.",
+      "Under Rule 19.3, for an unplayable ball in a bunker, you have the normal three options (stroke and distance, back-on-the-line, lateral) each for one stroke \u2014 but the back-on-the-line and lateral drops must stay in the bunker. For an additional penalty stroke (two total), you may drop outside the bunker on the back-on-the-line.",
     tags: ["bunker", "unplayable lie", "buried lie", "penalty relief", "back on the line"],
   },
   {
@@ -456,7 +456,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 13.1c(2)",
     explanation:
-      "Under the 2019 Rules, you may repair almost any damage on the putting green, including spike marks, ball marks, animal damage, and club indentations. The only damage you cannot repair is natural surface imperfections or natural wear of the hole.",
+      "Under Rule 13.1c(2), you may repair almost any damage on the putting green, including spike marks, ball marks, animal damage, and club indentations. The only damage you cannot repair is natural surface imperfections or natural wear of the hole.",
     tags: ["putting green", "spike mark", "repair", "line of putt"],
   },
   {
@@ -473,7 +473,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 11.1a, Penalty Exception in Stroke Play",
     explanation:
-      "In stroke play, when both balls are on the putting green before the stroke and one hits the other, the player who made the stroke gets a two-stroke penalty. The struck ball (yours) must be replaced to its original spot. The player who putted plays their ball as it lies.",
+      "Under Rule 11.1a (Exception in stroke play), when both balls are on the putting green before the stroke and one hits the other, the player who made the stroke gets a two-stroke penalty. The struck ball (yours) must be replaced to its original spot. The player who putted plays their ball as it lies.",
     tags: ["putting green", "ball hit ball", "stroke play", "penalty", "replace ball"],
   },
   {
@@ -490,7 +490,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 13.2a(2)",
     explanation:
-      "Under the current Rules (since 2019), there is no penalty if your ball played from the putting green (or anywhere else) hits the flagstick left in the hole. If the ball comes to rest in the hole, it counts as holed.",
+      "Under Rule 13.2a(2), there is no penalty if your ball played from the putting green (or anywhere else) hits the flagstick left in the hole. If the ball comes to rest in the hole, it counts as holed.",
     tags: ["flagstick", "putting green", "no penalty", "holed"],
   },
   {
@@ -507,7 +507,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 13.1d(2)",
     explanation:
-      "This is a common edge case. When a ball has been lifted and replaced on the putting green, and then natural forces (like wind) move it, you must replace it on its original spot \u2014 no penalty. This is different from a ball that was never lifted, which you would play from the new spot.",
+      "Under Rule 13.1d(2), when a ball has been lifted and replaced on the putting green, and then natural forces (like wind) move it, you must replace it on its original spot \u2014 no penalty. This is different from a ball that was never lifted, which you would play from the new spot under Rule 9.3.",
     tags: ["putting green", "wind", "ball moved", "replace ball", "natural forces"],
   },
   {
@@ -543,7 +543,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 14.3b(2)",
     explanation:
-      "Since the 2019 Rules, you must drop from knee height (measured when standing upright). The ball must be dropped straight down without spin or direction, and it must not touch you or your equipment before hitting the ground.",
+      "Under Rule 14.3b(2), you must drop from knee height (measured when standing upright). The ball must be dropped straight down without spin or direction, and it must not touch you or your equipment before hitting the ground.",
     tags: ["drop", "knee height", "relief procedure"],
   },
   {
@@ -560,7 +560,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 14.3c(2)",
     explanation:
-      "If a properly dropped ball rolls outside the relief area, you drop again. If it rolls out a second time, you place the ball on the spot where the second drop first hit the ground. You never drop more than twice.",
+      "Under Rule 14.3c(2), if a properly dropped ball rolls outside the relief area, you drop again. If it rolls out a second time, you place the ball on the spot where the second drop first hit the ground. You never drop more than twice.",
     tags: ["drop", "re-drop", "relief area", "place ball"],
   },
   {
@@ -584,18 +584,18 @@ export const SCENARIOS: Scenario[] = [
     id: "lr4",
     category: "LIFTING_RETURNING",
     tier: "competitor",
-    text: "You take relief from a cart path. After dropping the ball at knee height, it bounces and hits your foot before landing in the relief area. What happens?",
+    text: "You take relief from a cart path. After dropping the ball at knee height, it bounces off the ground and accidentally hits your foot before coming to rest in the relief area. What happens?",
     choices: [
+      "No penalty; the drop is valid \u2014 play the ball as it lies in the relief area",
       "The drop does not count \u2014 you must re-drop",
-      "No penalty; play the ball as it lies",
       "One-stroke penalty; play as it lies",
       "No penalty; but you must re-drop",
     ],
     correct: 0,
-    rule: "Rule 14.3b(2)",
+    rule: "Rule 14.3c(1)",
     explanation:
-      "When dropping, the ball must not touch you or your equipment before hitting the ground. If it does, the drop does not count and must be redone. There is no penalty \u2014 the ball simply must be re-dropped correctly.",
-    tags: ["drop", "re-drop", "cart path", "relief procedure"],
+      "Under Rule 14.3c(1), there is no penalty if a dropped ball accidentally hits the player or their equipment after hitting the ground. As long as the ball comes to rest in the relief area, the drop is valid. A re-drop is only required if the ball touches the player before hitting the ground.",
+    tags: ["drop", "cart path", "relief procedure", "accidentally hits player"],
   },
 
   // --- FREE RELIEF (Rules 15-16) ---
@@ -630,7 +630,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 16.1, Committee Procedures",
     explanation:
-      "Blue stakes (or blue lines) typically mark ground under repair (GUR), which is an abnormal course condition. You are entitled to free relief: find the nearest point of complete relief, not nearer the hole, and drop within one club-length.",
+      "Under Rule 16.1, blue stakes (or blue lines) typically mark ground under repair (GUR), which is an abnormal course condition. You are entitled to free relief: find the nearest point of complete relief, not nearer the hole, and drop within one club-length.",
     tags: ["GUR", "ground under repair", "blue stakes", "free relief", "course markings"],
   },
   {
@@ -647,14 +647,14 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 16.1a",
     explanation:
-      "Free relief from an immovable obstruction (like a sprinkler head) only applies when the obstruction interferes with your ball, stance, or area of intended swing \u2014 not your line of play. However, many courses adopt a Local Rule granting line-of-play relief from sprinkler heads near greens.",
+      "Under Rule 16.1a, free relief from an immovable obstruction (like a sprinkler head) only applies when the obstruction interferes with your ball, stance, or area of intended swing \u2014 not your line of play. However, many courses adopt a Local Rule granting line-of-play relief from sprinkler heads near greens.",
     tags: ["sprinkler head", "immovable obstruction", "line of play", "local rule", "rough"],
   },
   {
     id: "fr4",
     category: "FREE_RELIEF",
     tier: "weekend",
-    text: "There\u2019s a large puddle of casual water in the fairway and your ball is sitting in it. What are your options?",
+    text: "There\u2019s a large puddle of temporary water in the fairway and your ball is sitting in it. What are your options?",
     choices: [
       "Free relief: find the nearest point of complete relief from the temporary water, not nearer the hole, and drop within one club-length",
       "You must play it as it lies \u2014 water is a natural condition",
@@ -664,8 +664,8 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 16.1b",
     explanation:
-      "Temporary water (casual water) is an abnormal course condition. You get free relief: find the nearest point of complete relief (no nearer the hole) where the water doesn\u2019t affect your ball, stance, or swing, and drop within one club-length of that point. The relief area might be in the rough.",
-    tags: ["temporary water", "casual water", "free relief", "fairway", "abnormal course condition"],
+      "Under Rule 16.1b, temporary water is an abnormal course condition. You get free relief: find the nearest point of complete relief (no nearer the hole) where the water doesn\u2019t affect your ball, stance, or swing, and drop within one club-length of that point. The relief area might be in the rough.",
+    tags: ["temporary water", "free relief", "fairway", "abnormal course condition"],
   },
   {
     id: "fr5",
@@ -681,7 +681,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 16.1",
     explanation:
-      "Relief from abnormal course conditions (including animal holes) is always optional in the general area. You may choose to play the ball as it lies, even if the condition interferes with your play. You\u2019re never required to take free relief.",
+      "Under Rule 16.1, relief from abnormal course conditions (including animal holes) is always optional in the general area. You may choose to play the ball as it lies, even if the condition interferes with your play. You\u2019re never required to take free relief.",
     tags: ["animal hole", "abnormal course condition", "optional relief", "stance"],
   },
   {
@@ -717,7 +717,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 17.1d",
     explanation:
-      "Red-staked penalty areas give you three relief options, each with a one-stroke penalty: (1) stroke and distance, (2) back-on-the-line (on a line from the hole through where the ball last crossed the edge of the penalty area), or (3) lateral relief within 2 club-lengths of where the ball last crossed the edge, not nearer the hole.",
+      "Under Rule 17.1d, red-staked penalty areas give you three relief options, each with a one-stroke penalty: (1) stroke and distance, (2) back-on-the-line (on a line from the hole through where the ball last crossed the edge of the penalty area), or (3) lateral relief within 2 club-lengths of where the ball last crossed the edge, not nearer the hole.",
     tags: ["red stakes", "penalty area", "lateral relief", "water"],
   },
   {
@@ -734,7 +734,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 17.1d",
     explanation:
-      "Yellow penalty areas offer only two relief options (each with a one-stroke penalty): (1) stroke and distance, or (2) back-on-the-line (drop on a line from the hole through where the ball crossed the edge). Unlike red penalty areas, lateral relief is NOT available.",
+      "Under Rule 17.1d, yellow penalty areas offer only two relief options (each with a one-stroke penalty): (1) stroke and distance, or (2) back-on-the-line (drop on a line from the hole through where the ball crossed the edge). Unlike red penalty areas, lateral relief is NOT available.",
     tags: ["yellow stakes", "penalty area", "water", "back on the line", "stroke and distance"],
   },
   {
@@ -751,7 +751,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 17.1a",
     explanation:
-      "You always have the option to play your ball as it lies in a penalty area, just as you would anywhere else on the course. You may even ground your club and remove loose impediments in the penalty area. Relief is never mandatory.",
+      "Under Rule 17.1a, you always have the option to play your ball as it lies in a penalty area, just as you would anywhere else on the course. Under Rule 17.1b, you may ground your club and remove loose impediments in the penalty area. Relief is never mandatory.",
     tags: ["penalty area", "play it as it lies", "red stakes", "optional relief"],
   },
   {
@@ -768,7 +768,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 17.1d(2)",
     explanation:
-      "The penalty for relief from a penalty area is one stroke. Your tee shot was stroke 1, you add 1 penalty stroke, so your next shot (after the drop) is your 3rd stroke. If you hole that, you score 3 on the hole.",
+      "Under Rule 17.1d, the penalty for relief from a penalty area is one stroke. Your tee shot was stroke 1, you add 1 penalty stroke, so your next shot (after the drop) is your 3rd stroke. If you hole that, you score 3 on the hole.",
     tags: ["penalty area", "water", "yellow stakes", "counting strokes", "tee shot"],
   },
   {
@@ -785,7 +785,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 18.3c(2)",
     explanation:
-      "If your original ball is found in bounds within 3 minutes of searching, the provisional ball must be abandoned. You must continue play with the original ball, regardless of the positions of the two balls.",
+      "Under Rule 18.3c(2), if your original ball is found in bounds within 3 minutes of searching, the provisional ball must be abandoned. You must continue play with the original ball, regardless of the positions of the two balls.",
     tags: ["provisional", "original ball", "found ball", "abandon provisional"],
   },
   {
@@ -802,7 +802,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 18.3c(2)",
     explanation:
-      "You can still play your original ball as long as you haven\u2019t played the provisional from a spot that is nearer the hole than where the original ball lies. The key is the location of the provisional when played, not the number of strokes made with it.",
+      "Under Rule 18.3c(2), you can still play your original ball as long as you haven\u2019t played the provisional from a spot that is nearer the hole than where the original ball lies. The key is the location of the provisional when played, not the number of strokes made with it.",
     tags: ["provisional", "original ball", "nearer the hole", "multiple shots"],
   },
   {
@@ -819,7 +819,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 18.2a(1)",
     explanation:
-      "A ball is not lost until the 3-minute search time expires or you put another ball in play by making a stroke. Since you hadn\u2019t made a stroke with a new ball yet and the 3 minutes hadn\u2019t expired, your original ball is found in time. You must play it.",
+      "Under Rule 18.2a(1), a ball is not lost until the 3-minute search time expires or you put another ball in play by making a stroke. Since you hadn\u2019t made a stroke with a new ball yet and the 3 minutes hadn\u2019t expired, your original ball is found in time. You must play it.",
     tags: ["lost ball", "3 minutes", "found ball", "stroke and distance"],
   },
   {
@@ -836,7 +836,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 17.1",
     explanation:
-      "A ball is in a penalty area when any part of it lies on or touches the boundary of the penalty area. Once the ball is in the penalty area, that\u2019s where the ball is \u2014 your stance being outside doesn\u2019t change that. You can play it as it lies or take penalty area relief.",
+      "Under Rule 17.1, a ball is in a penalty area when any part of it lies on or touches the boundary of the penalty area. Once the ball is in the penalty area, that\u2019s where the ball is \u2014 your stance being outside doesn\u2019t change that. You can play it as it lies or take penalty area relief.",
     tags: ["penalty area", "red stakes", "boundary", "stance"],
   },
 
@@ -855,7 +855,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 9.5b",
     explanation:
-      "If your opponent lifts or deliberately touches your ball at rest without your authority (when not permitted by the Rules), your opponent gets one penalty stroke. Your ball must be replaced.",
+      "Under Rule 9.5b, if your opponent lifts or deliberately touches your ball at rest without your authority (when not permitted by the Rules), your opponent gets one penalty stroke. Your ball must be replaced.",
     tags: ["match play", "opponent", "lifted ball", "putting green", "penalty"],
   },
   {
@@ -866,7 +866,7 @@ export const SCENARIOS: Scenario[] = [
     choices: [
       "Announce you will play two balls, play the hole with both, and report to the Committee before signing your scorecard",
       "Choose the interpretation you believe is correct and proceed",
-      "Ask your fellow competitors to vote on the correct ruling",
+      "Ask the other players in your group to vote on the correct ruling",
       "Mark your ball and refuse to continue until a rules official arrives",
     ],
     correct: 0,
@@ -889,7 +889,7 @@ export const SCENARIOS: Scenario[] = [
     correct: 0,
     rule: "Rule 20.1b",
     explanation:
-      "In match play, either player may request a ruling from the Committee. If a referee is available, the referee decides. If not, the players should agree on a way forward and either player may later request an official ruling from the Committee.",
+      "Under Rule 20.1b, in match play, either player may request a ruling from the Committee. If a referee is available, the referee decides. If not, the players should agree on a way forward and either player may later request an official ruling from the Committee.",
     tags: ["match play", "rules dispute", "committee", "referee"],
   },
   ...SCENARIOS_BATCH_1,

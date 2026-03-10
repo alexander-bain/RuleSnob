@@ -434,7 +434,7 @@ export const SCENARIOS_BATCH_6: Scenario[] = [
     tier: "weekend",
     text: "In stroke play, what does your marker do?",
     choices: [
-      "Records your scores on the scorecard, certifies the hole scores, and may also be a fellow competitor",
+      "Records your scores on the scorecard, certifies the hole scores, and is typically another player in your group",
       "Makes rulings on any disputes during the round",
       "Enforces the pace of play policy",
       "Watches every stroke you make and verifies club conformance",
@@ -442,8 +442,8 @@ export const SCENARIOS_BATCH_6: Scenario[] = [
     correct: 0,
     rule: "Rule 3.3b(1)",
     explanation:
-      "Under Rule 3.3b(1), the marker is responsible for certifying the player's hole scores on the scorecard. The marker is typically a fellow competitor. The marker does not make rulings (that is the Committee's role) and does not need to watch every stroke — they record what they observe and what the player reports.",
-    tags: ["stroke play", "marker", "scorecard", "fellow competitor"],
+      "Under Rule 3.3b(1), the marker is responsible for certifying the player's hole scores on the scorecard. The marker is typically another player in the group. The marker does not make rulings (that is the Committee's role) and does not need to watch every stroke — they record what they observe and what the player reports.",
+    tags: ["stroke play", "marker", "scorecard"],
   },
   {
     id: "b6_026",
@@ -454,7 +454,7 @@ export const SCENARIOS_BATCH_6: Scenario[] = [
       "Yes — the Committee may assign a new marker or allow the player to change markers during the round",
       "No — the same marker must sign for every hole",
       "Only if the original marker becomes ill or cannot continue",
-      "Only with the approval of all fellow competitors in the group",
+      "Only with the approval of all other players in the group",
     ],
     correct: 0,
     rule: "Rule 3.3b(1)",
@@ -1047,7 +1047,7 @@ export const SCENARIOS_BATCH_6: Scenario[] = [
     choices: [
       "No — normal scuffs and scratches do not make a ball unfit for play; only a ball that is visibly cut, cracked, or out of shape can be substituted",
       "Yes — any visible damage allows substitution",
-      "Only if your opponent or fellow competitor agrees the ball is damaged",
+      "Only if your opponent or another player agrees the ball is damaged",
       "Yes — you can replace your ball at any time during a hole",
     ],
     correct: 0,
@@ -1070,7 +1070,7 @@ export const SCENARIOS_BATCH_6: Scenario[] = [
     correct: 0,
     rule: "Rule 4.2c",
     explanation:
-      "Under Rule 4.2c, if a player reasonably believes their ball has become cut or cracked during the play of a hole, the player may mark and lift the ball to examine it. Before lifting, the player must announce the intention to the opponent, marker, or fellow competitor and give them the opportunity to observe. The ball must not be cleaned beyond what is needed to see if it is damaged.",
+      "Under Rule 4.2c, if a player reasonably believes their ball has become cut or cracked during the play of a hole, the player may mark and lift the ball to examine it. Before lifting, the player must announce the intention to another player or marker and give them the opportunity to observe. The ball must not be cleaned beyond what is needed to see if it is damaged.",
     tags: ["ball", "cracked ball", "examination", "procedure"],
   },
   {
@@ -1267,7 +1267,7 @@ export const SCENARIOS_BATCH_6: Scenario[] = [
     id: "b6_073",
     category: "FUNDAMENTALS",
     tier: "competitor",
-    text: "You wear compression sleeves on your arms during a round for a medical condition. A fellow competitor questions whether this is allowed. What is the ruling?",
+    text: "You wear compression sleeves on your arms during a round for a medical condition. Another player questions whether this is allowed. What is the ruling?",
     choices: [
       "Medical equipment and compression garments worn for a legitimate medical reason are permitted under Rule 4.3b",
       "Compression sleeves are always prohibited during competition",
@@ -1420,10 +1420,10 @@ export const SCENARIOS_BATCH_6: Scenario[] = [
     id: "b6_082",
     category: "FUNDAMENTALS",
     tier: "competitor",
-    text: "During a round, you use tape on your fingers to prevent blisters. A fellow competitor says this is a prohibited aid. Who is correct?",
+    text: "During a round, you use tape on your fingers to prevent blisters. Another player says this is a prohibited aid. Who is correct?",
     choices: [
       "You are correct — tape for preventing blisters or protecting against injury is permitted",
-      "The fellow competitor is correct — tape modifies your grip",
+      "The other player is correct — tape modifies your grip",
       "Tape is only allowed with a medical certificate",
       "Tape is allowed on fingers but not on the palm",
     ],
@@ -1488,7 +1488,7 @@ export const SCENARIOS_BATCH_6: Scenario[] = [
     id: "b6_086",
     category: "FUNDAMENTALS",
     tier: "official",
-    text: "A player applies sunscreen to their hands during the round. A fellow competitor claims this gives an unfair grip advantage. Is the sunscreen a breach of the Rules?",
+    text: "A player applies sunscreen to their hands during the round. Another player claims this gives an unfair grip advantage. Is the sunscreen a breach of the Rules?",
     choices: [
       "No — sunscreen applied for sun protection is permitted, even if it incidentally affects grip; it is a normal use of equipment for health",
       "Yes — any substance on the hands that could affect grip is prohibited",
