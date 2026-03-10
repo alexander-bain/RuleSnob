@@ -1531,15 +1531,15 @@ export const SCENARIOS_BATCH_11: Scenario[] = [
     tier: "official",
     text: "In Four-Ball, can partners share clubs?",
     choices: [
-      "Yes — partners in Four-Ball may share clubs, provided the total number of clubs does not exceed 14 for each player at any given time (but shared clubs count against both players' limits)",
+      "Yes — partners in Four-Ball may share clubs, provided the total number of clubs the two partners carry together does not exceed 14",
       "No — each partner must have their own set of up to 14 clubs",
       "Yes — and there is no limit on the total number of clubs",
-      "Only if they have fewer than 14 clubs each",
+      "Yes — each partner may carry up to 14 clubs independently",
     ],
     correct: 0,
     rule: "Rule 23.7",
     explanation:
-      "In Four-Ball, partners may share clubs. However, the total number of clubs they carry must not exceed 14 per player. When clubs are shared, a shared club counts toward each player's limit when that player uses it. Partners should be careful to stay within the 14-club limit for each individual player.",
+      "Under Rule 23.7, partners in Four-Ball may share clubs, but the total number of clubs the two partners carry together must not exceed 14. This is a combined limit — not 14 per player. For example, one partner could carry 10 clubs and the other 4, sharing as needed during the round.",
     tags: ["Four-Ball", "sharing clubs", "14 club limit", "partners"],
   },
 

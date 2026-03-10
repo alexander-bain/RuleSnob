@@ -400,15 +400,15 @@ export const SCENARIOS_BATCH_6: Scenario[] = [
     tier: "competitor",
     text: "In stroke play, you incur a two-stroke penalty on the 8th hole but are unaware of it. You record a 5 for that hole (which would be 7 with the penalty). After the round, the Committee discovers the breach. What happens?",
     choices: [
-      "You are disqualified — the returned score for that hole was lower than actually taken (including the unknown penalty)",
-      "The Committee adds the two strokes; you are not disqualified",
+      "You are disqualified — the returned score for that hole was lower than actually taken",
+      "The Committee adds the two penalty strokes to your score; you are not disqualified",
       "No penalty — you did not know about the breach",
-      "Two additional penalty strokes for the scorecard error",
+      "Two additional penalty strokes for the scorecard error, on top of the original two",
     ],
-    correct: 0,
-    rule: "Rule 3.3b(3)",
+    correct: 1,
+    rule: "Rule 3.3b(3), Exception",
     explanation:
-      "Under Rule 3.3b(3), if the score returned for a hole is lower than actually taken — including penalty strokes the player did not know about — the player is disqualified. The Rules do not provide an exception for ignorance of a penalty. However, there is an exception if the player did not know they had incurred a penalty before returning the scorecard due to a facts the player could not reasonably have known.",
+      "Under the Exception to Rule 3.3b(3), if penalty strokes were not included in a player's score because the player did not know about them before returning the scorecard, the player is not disqualified. Instead, the Committee revises the score by adding the missing penalty strokes. This Exception was added in the 2023 Rules to prevent the harsh outcome of disqualification for unknowing breaches. If the player HAD known about the penalty and still returned a lower score, disqualification would apply.",
     tags: ["stroke play", "scorecard", "unknown penalty", "disqualification"],
   },
   {

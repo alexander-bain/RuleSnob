@@ -423,15 +423,15 @@ export const SCENARIOS_BATCH_7: Scenario[] = [
     tier: "weekend",
     text: "You take a very long time over each shot, sometimes more than 2 minutes. An official warns you about pace of play. If you continue, what penalty could apply?",
     choices: [
-      "The general penalty (two strokes / loss of hole), and disqualification for repeated offenses",
-      "One-stroke penalty per slow shot",
+      "One penalty stroke for the first breach, escalating to the general penalty and then disqualification for continued offenses",
       "No penalty — there is no specific penalty for slow play in the Rules",
       "A warning only — slow play is not penalized",
+      "Disqualification on the first offense",
     ],
     correct: 0,
     rule: "Rule 5.6a",
     explanation:
-      "Under Rule 5.6a, a player must not unreasonably delay play. The penalty is one stroke for the first breach, the general penalty for the second breach, and disqualification for the third breach. The Committee may adopt a pace of play policy with specific time limits.",
+      "Under Rule 5.6a, a player must not unreasonably delay play. The penalty escalates: one stroke for the first breach, the general penalty (two strokes / loss of hole) for the second breach, and disqualification for the third breach. The Committee may adopt a pace of play policy with specific time limits.",
     tags: ["pace of play", "slow play", "penalty", "unreasonable delay"],
   },
   {
@@ -1360,7 +1360,7 @@ export const SCENARIOS_BATCH_7: Scenario[] = [
     id: "b7_077",
     category: "PLAYING_ROUND",
     tier: "competitor",
-    text: "Your ball is resting against the flagstick inside the hole, but part of the ball is above the surface of the green. Is the ball holed?",
+    text: "Your ball is resting against the flagstick inside the hole, but the flagstick holds the ball up so that the entire ball is above the surface of the green. Is the ball holed?",
     choices: [
       "No — the entire ball must be below the surface; you may remove the flagstick, and if the ball falls in, it is holed",
       "Yes — if the ball is inside the hole, it is always holed",
@@ -1368,9 +1368,9 @@ export const SCENARIOS_BATCH_7: Scenario[] = [
       "No — you must push the ball down with your putter",
     ],
     correct: 0,
-    rule: "Rule 13.2a(2)",
+    rule: "Rule 13.2c(2)",
     explanation:
-      "If the ball rests against the flagstick in the hole but is not below the surface, the player may remove or move the flagstick. If the ball then falls to the bottom of the hole, it is holed. If the ball moves away from the hole, it must be placed on the lip of the hole and holed from there.",
+      "Under Rule 13.2c(2), when a ball rests against the flagstick in the hole but no part of the ball is below the surface, the ball is not holed. Note: if any part of the ball WERE below the surface while resting against the flagstick, Rule 13.2c(1) would treat it as holed. Since the entire ball is above the surface here, you may remove the flagstick — if the ball falls in, it is holed; if it moves away, place it on the lip.",
     tags: ["holed", "flagstick", "above surface", "removing flagstick"],
   },
   {

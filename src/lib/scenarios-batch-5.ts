@@ -479,18 +479,18 @@ export const SCENARIOS_BATCH_5: Scenario[] = [
     id: "b5_027",
     category: "FUNDAMENTALS",
     tier: "competitor",
-    text: "Before a stroke play round, two players agree that they will not penalize each other for accidentally stepping on each other's putting lines. Is this allowed?",
+    text: "Before a stroke play round, two players agree that if either hits a ball out of bounds, they will simply drop near where it crossed the boundary and add one penalty stroke, rather than going back to replay under stroke and distance. Is this allowed?",
     choices: [
       "No — both players are disqualified for agreeing to waive a Rule",
-      "Yes — it is just a courtesy agreement with no rules impact",
-      "No — only a one-stroke penalty for each player",
-      "Yes — stepping on a putting line has no penalty anyway",
+      "Yes — this is a common practice and perfectly acceptable",
+      "No — but only a two-stroke penalty for each player",
+      "Yes — as long as neither player actually uses the procedure",
     ],
     correct: 0,
     rule: "Rule 1.3b(1)",
     explanation:
-      "Under Rule 1.3b(1), players must not agree to exclude the operation of any Rule or to waive any penalty. Even if the agreement seems minor, the penalty for doing so is disqualification for both players. Note: In practice, accidentally stepping on a line is not penalized under the Rules, so the agreement itself is misguided — but making the agreement to waive a perceived Rule still triggers disqualification.",
-    tags: ["waive rules", "disqualification", "agreement", "stroke play"],
+      "Under Rule 1.3b(1), players must not agree to exclude the operation of any Rule or to waive any penalty. Their agreement bypasses the required stroke-and-distance procedure under Rule 18.2b, which constitutes agreeing to exclude a Rule. Both players are disqualified the moment they make the agreement, regardless of whether either actually hits a ball out of bounds. Note: A Committee may adopt Model Local Rule E-5 offering a similar drop-and-add-two option, but players cannot create this on their own.",
+    tags: ["waive rules", "disqualification", "agreement", "stroke play", "out of bounds"],
   },
   {
     id: "b5_028",
@@ -1066,7 +1066,7 @@ export const SCENARIOS_BATCH_5: Scenario[] = [
     correct: 0,
     rule: "Rule 2.2c",
     explanation:
-      "Under Rule 2.2c, when a ball lies in two different areas of the course, it is treated as lying in the specific area with the most restrictive rules. The priority order is: penalty area > bunker > putting green > general area. So a ball partly in a bunker and partly in the general area is treated as being in the bunker.",
+      "Under Rule 2.2c, when a ball lies in two different areas of the course, it is treated as lying in the special area. Specifically: if any part is in a penalty area, it is in the penalty area; if any part is on the putting green, it is on the putting green; and if part is in a bunker and part in the general area, it is in the bunker. So a ball partly in a bunker and partly in the general area is treated as being in the bunker.",
     tags: ["ball in two areas", "bunker", "general area", "priority"],
   },
   {

@@ -1237,7 +1237,7 @@ export const SCENARIOS_BATCH_1: Scenario[] = [
     id: "gen_r26",
     category: "PLAYING_ROUND",
     tier: "official",
-    text: "In stroke play, you pick up your ball on the 15th hole without holing out, intending to withdraw. You then change your mind and want to continue. What is the ruling?",
+    text: "In stroke play, you pick up your ball on the 15th hole without holing out, intending to withdraw. You then change your mind but have already teed off on the 16th hole. What is the ruling?",
     choices: [
       "You are disqualified — you failed to hole out and cannot correct after making a stroke on the next tee",
       "You may continue with a two-stroke penalty on the 15th",
@@ -1247,7 +1247,7 @@ export const SCENARIOS_BATCH_1: Scenario[] = [
     correct: 0,
     rule: "Rule 3.3c",
     explanation:
-      "In stroke play, if you fail to hole out and don't correct the mistake before making a stroke on the next tee (or, for the last hole, before leaving the putting green area), you are disqualified. Picking up without holing out and then attempting to continue is not permitted.",
+      "Under Rule 3.3c, if you fail to hole out on a hole, you must correct the mistake before making a stroke on the next teeing area. Once you have teed off on the 16th hole, it is too late to correct — you are disqualified. Had you changed your mind before teeing off on the 16th, you could have gone back, replaced the ball, and holed out (with a one-stroke penalty for lifting without authority under Rule 9.4b).",
     tags: ["stroke play", "hole out", "disqualification", "withdrawal", "pick up"],
   },
   {
