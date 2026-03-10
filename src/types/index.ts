@@ -69,3 +69,11 @@ export interface GroupMember {
   streak: number;
   scenariosSeen: number;
 }
+
+export interface ScenarioFlag {
+  scenarioId: string;
+  uid: string;
+  reason: "wrong_answer" | "unclear" | "outdated" | "other";
+  comment?: string;
+  createdAt: number;
+}

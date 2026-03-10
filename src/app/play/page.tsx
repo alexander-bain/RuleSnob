@@ -16,6 +16,7 @@ import {
   loadUserStats,
   saveSessionResults,
   ensureUserDoc,
+  flagScenario,
 } from "@/lib/firestore";
 
 type Screen = "home" | "session" | "feedback" | "summary";
@@ -250,6 +251,16 @@ function GameContent() {
     }));
   };
 
+  const handleFlag = (
+    reason: "wrong_answer" | "unclear" | "outdated" | "other",
+    comment?: string
+  ) => {
+    if (!user || !currentScenario) return;
+    flagScenario(user.uid, currentScenario.id, reason, comment).catch((err) =>
+      console.error("Failed to flag scenario:", err)
+    );
+  };
+
   const goHome = () => setScreen("home");
 
   // Show loading while Firestore hydrates
@@ -302,6 +313,7 @@ function GameContent() {
         selectedAnswer={selectedAnswer}
         onFlagGuess={handleFlagGuess}
         onNext={handleNext}
+        onFlag={handleFlag}
         isLastScenario={currentIndex + 1 >= sessionQueue.length}
       />
     );

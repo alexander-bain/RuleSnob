@@ -16,6 +16,7 @@ import {
 } from "firebase/firestore";
 import { User } from "firebase/auth";
 import { getFirebaseDb } from "./firebase";
+import { addDoc } from "firebase/firestore";
 import { CardState, UserStats, GroupDoc, GroupMember } from "@/types";
 
 export async function ensureUserDoc(user: User): Promise<void> {
@@ -333,5 +334,25 @@ export function subscribeToGroupMembers(
 
     members.sort((a, b) => b.rulesIQ - a.rulesIQ);
     onUpdate(members);
+  });
+}
+
+// =============================================
+// SCENARIO FLAG FUNCTIONS
+// =============================================
+
+export async function flagScenario(
+  uid: string,
+  scenarioId: string,
+  reason: "wrong_answer" | "unclear" | "outdated" | "other",
+  comment?: string
+): Promise<void> {
+  const db = getFirebaseDb();
+  await addDoc(collection(db, "flags"), {
+    scenarioId,
+    uid,
+    reason,
+    comment: comment || "",
+    createdAt: Timestamp.now(),
   });
 }
