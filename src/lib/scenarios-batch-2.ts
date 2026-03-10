@@ -721,7 +721,7 @@ export const SCENARIOS_BATCH_2: Scenario[] = [
     id: "gen_b42",
     category: "PLAYING_BALL",
     tier: "weekend",
-    text: "During your round, you ask your playing partner what club they used on a par 3. In stroke play, what is the penalty?",
+    text: "During your round on a par 3, before either of you has played, you ask your playing partner what club they plan to use. In stroke play, what is the penalty?",
     choices: [
       "Two-stroke penalty on you for asking for advice",
       "Two-stroke penalty on your playing partner for giving advice (if they answer)",
@@ -731,8 +731,8 @@ export const SCENARIOS_BATCH_2: Scenario[] = [
     correct: 0,
     rule: "Rule 10.2a",
     explanation:
-      "Under Rule 10.2a, asking for advice is penalized the same as giving it. By asking your playing partner what club they used (intending to influence your own play), you receive the general penalty (two strokes in stroke play).",
-    tags: ["advice", "stroke play", "penalty"],
+      "Under Rule 10.2a, 'advice' includes any verbal comment or action intended to influence a player's decision on how to play, including club selection. Asking what club another player plans to use before they play is asking for advice and results in the general penalty (two strokes). Note: looking into another player's bag to see what club they selected is NOT advice because it is publicly available information. But directly asking is.",
+    tags: ["advice", "stroke play", "penalty", "club selection"],
   },
   {
     id: "gen_b43",
@@ -976,18 +976,18 @@ export const SCENARIOS_BATCH_2: Scenario[] = [
     id: "gen_b57",
     category: "PLAYING_BALL",
     tier: "weekend",
-    text: "Your caddie stands behind you on an extension of your line of play while you take your stance, then moves away before you begin the stroke. Is there a penalty?",
+    text: "Your caddie stands behind you on an extension of your line of play while you take your stance, then moves away before you make the stroke. Is there a penalty?",
     choices: [
-      "No penalty — the restriction only applies if the caddie is still behind you when you begin the stroke",
-      "General penalty — your caddie cannot stand behind you at any point during alignment",
+      "Yes — the general penalty applies because the caddie was behind you when you began taking your stance, even though they moved before the stroke",
+      "No penalty — the restriction only applies if the caddie is still behind you when you make the stroke",
       "One-stroke penalty on the caddie",
       "No penalty; caddies may stand anywhere at any time",
     ],
     correct: 0,
     rule: "Rule 10.2b(4)",
     explanation:
-      "Under Rule 10.2b(4), your caddie must not deliberately stand on or close to an extension of your line of play behind you while you are making a stroke. However, if the caddie moves away before you begin the stroke, there is no breach.",
-    tags: ["caddie", "line of play", "alignment"],
+      "Under Rule 10.2b(4), from the time you begin taking a stance for the stroke and until the stroke is made, your caddie must not deliberately stand on or close to an extension of your line of play behind you. The breach occurs when you begin taking your stance with the caddie in that position. The caddie moving away afterward does not cure the breach — the general penalty applies. To avoid the penalty, you must back away from your stance, have the caddie move, and then retake your stance.",
+    tags: ["caddie", "line of play", "alignment", "stance"],
   },
 
   // =============================================
@@ -1049,7 +1049,7 @@ export const SCENARIOS_BATCH_2: Scenario[] = [
     id: "gen_b61",
     category: "PLAYING_BALL",
     tier: "competitor",
-    text: "Your ball is rolling toward a water hazard. Your caddie runs over and stops the ball with their foot to prevent it from going in. What happens?",
+    text: "Your ball is rolling toward a penalty area. Your caddie runs over and stops the ball with their foot to prevent it from going in. What happens?",
     choices: [
       "General penalty (two strokes); the ball must be placed on the estimated spot where it would have come to rest",
       "No penalty — your caddie was trying to help",
@@ -1103,14 +1103,14 @@ export const SCENARIOS_BATCH_2: Scenario[] = [
     text: "In match play, your ball in motion is about to roll off the green. Your opponent deliberately stops it with their foot. What is the ruling?",
     choices: [
       "Your opponent gets the general penalty (loss of hole)",
-      "No penalty — in match play, the opponent may stop a ball",
+      "You may choose to either estimate where the ball would have come to rest and place it there, or cancel the stroke and replay it",
       "Your opponent gets a one-stroke penalty; play the ball as it lies",
-      "The hole is replayed",
+      "No penalty and no remedy — play the ball as it lies where it was stopped",
     ],
-    correct: 0,
+    correct: 1,
     rule: "Rule 11.2c",
     explanation:
-      "Under Rule 11.2, if any player or caddie deliberately deflects or stops a ball in motion, the general penalty applies. In match play, this means loss of hole for the opponent who stopped the ball.",
+      "Under Rule 11.2c, when an opponent deliberately deflects or stops your ball in motion in match play, there is no penalty to the opponent. Instead, you (the player whose ball was stopped) get to choose the outcome: either estimate where the ball would have come to rest and place it at that spot, or cancel the stroke and replay it. This gives you the advantage, not a penalty to the opponent.",
     tags: ["ball in motion", "deliberate deflection", "match play", "opponent"],
   },
   {
@@ -1170,16 +1170,16 @@ export const SCENARIOS_BATCH_2: Scenario[] = [
     tier: "competitor",
     text: "In match play, you play a chip shot from just off the green. While your ball is still rolling on the green, your opponent putts their ball, and the two balls collide. What happens?",
     choices: [
+      "No penalty to either player; you play your ball from where it comes to rest, but your opponent must replay their putt",
       "No penalty to either player; both balls are played from where they come to rest",
-      "Your opponent gets a penalty for playing out of turn",
       "Both balls must be replayed",
-      "You get to choose where your ball is placed",
+      "Your opponent gets a penalty for playing out of turn",
     ],
     correct: 0,
-    rule: "Rule 11.1a",
+    rule: "Rule 11.1a, Clarification 11.1b(2)/1",
     explanation:
-      "Under Rule 11.1a, if two balls in motion collide, there is generally no penalty. Both balls are played from where they come to rest. In match play, playing out of turn has no penalty (though the other player may recall the stroke under certain conditions).",
-    tags: ["ball in motion", "stacked balls", "match play", "putting green"],
+      "Under the 2026 Clarification 11.1b(2)/1, a ball in motion on the putting green is treated as a movable obstruction. Your opponent putted from the putting green and their ball hit your ball (a 'movable obstruction' in motion on the green), so your opponent must replay their stroke without penalty. Your ball was played from off the green, so Rule 11.1b(2) does not apply to you — you play your ball from where it comes to rest under Rule 11.1a. No penalty to either player.",
+    tags: ["ball in motion", "collision", "match play", "putting green", "2026 clarification"],
   },
   {
     id: "gen_b69",
@@ -1270,18 +1270,18 @@ export const SCENARIOS_BATCH_2: Scenario[] = [
     id: "gen_b74",
     category: "PLAYING_BALL",
     tier: "official",
-    text: "Two balls are rolling on the putting green at the same time after being putted and they collide. Neither player deliberately caused the collision. What is the ruling?",
+    text: "Two balls are rolling on the putting green at the same time after being putted and they collide. Neither player deliberately caused the collision. What is the ruling under the 2026 clarification?",
     choices: [
       "No penalty to either player; each ball is played from where it comes to rest",
-      "Both players replay their strokes",
-      "Both players get a one-stroke penalty",
-      "The ball closest to the hole when they collided must be replayed",
+      "No penalty; both players must replay their strokes from the original spots",
+      "Both players get a one-stroke penalty and replay",
+      "No penalty; only the player who putted second must replay",
     ],
-    correct: 0,
-    rule: "Rule 11.1a",
+    correct: 1,
+    rule: "Clarification 11.1b(2)/1",
     explanation:
-      "Under Rule 11.1a, if two balls in motion accidentally collide, there is generally no penalty. Each ball is played from where it comes to rest. The stroke-play exception about hitting a ball at rest on the green does not apply since both balls were in motion.",
-    tags: ["ball in motion", "stacked balls", "putting green"],
+      "Under the January 2026 Clarification 11.1b(2)/1, a ball in motion on the putting green is treated as a movable obstruction. When a ball played from the putting green accidentally hits another ball in motion on the putting green, the player must replay the stroke. Since both balls were played from the putting green and both hit each other while in motion, both players must replay their strokes from the original spots. There is no penalty.",
+    tags: ["ball in motion", "putting green", "replay stroke", "2026 clarification"],
   },
   {
     id: "gen_b75",

@@ -3,6 +3,14 @@ import { SCENARIOS_BATCH_1 } from "./scenarios-batch-1";
 import { SCENARIOS_BATCH_2 } from "./scenarios-batch-2";
 import { SCENARIOS_BATCH_3 } from "./scenarios-batch-3";
 import { SCENARIOS_BATCH_4 } from "./scenarios-batch-4";
+import { SCENARIOS_BATCH_5 } from "./scenarios-batch-5";
+import { SCENARIOS_BATCH_6 } from "./scenarios-batch-6";
+import { SCENARIOS_BATCH_7 } from "./scenarios-batch-7";
+import { SCENARIOS_BATCH_8 } from "./scenarios-batch-8";
+import { SCENARIOS_BATCH_9 } from "./scenarios-batch-9";
+import { SCENARIOS_BATCH_10 } from "./scenarios-batch-10";
+import { SCENARIOS_BATCH_11 } from "./scenarios-batch-11";
+import { SCENARIOS_BATCH_12 } from "./scenarios-batch-12";
 
 export const CATEGORIES: Record<CategoryKey, CategoryInfo> = {
   FUNDAMENTALS: { name: "Fundamentals", rules: "1\u20134", color: "#2E7D32" },
@@ -888,4 +896,12 @@ export const SCENARIOS: Scenario[] = [
   ...SCENARIOS_BATCH_2,
   ...SCENARIOS_BATCH_3,
   ...SCENARIOS_BATCH_4,
+  ...SCENARIOS_BATCH_5,
+  ...SCENARIOS_BATCH_6,
+  ...SCENARIOS_BATCH_7,
+  ...SCENARIOS_BATCH_8,
+  ...SCENARIOS_BATCH_9,
+  ...SCENARIOS_BATCH_10,
+  ...SCENARIOS_BATCH_11,
+  ...SCENARIOS_BATCH_12,
 ];
