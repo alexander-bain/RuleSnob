@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Scenario } from "@/types";
 
 interface FeedbackScreenProps {
@@ -19,6 +20,12 @@ export default function FeedbackScreen({
 }: FeedbackScreenProps) {
   const correct = selectedAnswer === scenario.correct;
   const accentColor = correct ? "#2E7D32" : "#C62828";
+  const [guessMarked, setGuessMarked] = useState(false);
+
+  const handleGuess = () => {
+    onFlagGuess();
+    setGuessMarked(true);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FAF8F5] to-[#F0EDE8]">
@@ -113,10 +120,16 @@ export default function FeedbackScreen({
           <div className="flex gap-2.5">
             {correct && (
               <button
-                onClick={onFlagGuess}
-                className="flex-1 rounded-xl border-[1.5px] border-[#EEEEEE] bg-white px-4 py-3.5 text-sm font-medium text-[#757575] transition-colors hover:bg-[#F5F5F5]"
+                onClick={handleGuess}
+                disabled={guessMarked}
+                className="flex-1 rounded-xl border-[1.5px] px-4 py-3.5 text-sm font-medium"
+                style={{
+                  borderColor: guessMarked ? "#2E7D32" : "#EEEEEE",
+                  backgroundColor: guessMarked ? "#E8F5E9" : "#FFFFFF",
+                  color: guessMarked ? "#2E7D32" : "#757575",
+                }}
               >
-                I guessed
+                {guessMarked ? "\u2713 Marked as guess" : "I guessed"}
               </button>
             )}
             <button
