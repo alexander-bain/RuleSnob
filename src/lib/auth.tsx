@@ -43,8 +43,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const handleSignIn = async () => {
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(getFirebaseAuth(), provider);
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(getFirebaseAuth(), provider);
+    } catch (error: unknown) {
+      const firebaseError = error as { code?: string; message?: string };
+      
+      // Show user-friendly error
+      if (firebaseError.code === "auth/unauthorized-domain") {
+        const currentDomain = window.location.hostname;
+        alert(`Auth domain not authorized.\n\nPlease add this domain to Firebase:\n${currentDomain}\n\nGo to Firebase Console → Authentication → Settings → Authorized domains`);
+      } else if (firebaseError.code === "auth/popup-blocked") {
+        alert("Popup was blocked. Please allow popups for this site.");
+      } else {
+        alert(`Sign-in failed: ${firebaseError.message || "Unknown error"}`);
+      }
+    }
   };
 
   const handleSignOut = async () => {
