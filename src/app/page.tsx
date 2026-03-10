@@ -29,12 +29,12 @@ export default function LandingPage() {
     <div className="flex min-h-screen flex-col items-center justify-center px-6">
       <div className="w-full max-w-sm text-center">
         {/* Logo / Title */}
-        <h1 className="mb-4 text-5xl font-bold tracking-tight text-emerald-900">
+        <h1 className="mb-3 text-6xl font-bold tracking-tight" style={{ color: "#1B5E20" }}>
           RuleSnob
         </h1>
         
         {/* Tagline */}
-        <p className="mb-2 text-sm font-semibold text-emerald-700">
+        <p className="mb-3 text-sm font-semibold" style={{ color: "#2E7D32" }}>
           Master the Rules of Golf
         </p>
         
@@ -47,9 +47,9 @@ export default function LandingPage() {
           <AuthButton />
         </div>
 
-        {/* Social proof or CTA */}
-        <div className="mt-10 flex items-center justify-center gap-1 text-xs text-gray-500">
-          <span>✓</span>
+        {/* Social proof */}
+        <div className="mt-10 flex items-center justify-center gap-1.5 text-xs text-gray-600">
+          <span className="text-lg" style={{ color: "#2E7D32" }}>✓</span>
           <span>Trusted by golfers everywhere</span>
         </div>
 
