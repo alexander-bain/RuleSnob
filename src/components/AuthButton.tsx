@@ -38,7 +38,7 @@ export default function AuthButton() {
   return (
     <button
       onClick={signIn}
-      className="flex items-center gap-3 rounded-xl border border-[#EEEEEE] bg-white px-6 py-3 text-[15px] font-semibold text-[#2D2D2D] shadow-sm transition-all hover:border-[#BDBDBD] hover:shadow-md active:scale-[0.98]"
+      className="flex items-center gap-3 rounded-golf-lg border border-border bg-white px-7 py-3 text-base font-semibold text-pencil shadow-golf-md transition-all hover:border-sand hover:shadow-golf-lg active:scale-[0.98]"
     >
       <svg width="20" height="20" viewBox="0 0 48 48">
         <path

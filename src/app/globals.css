@@ -14,4 +14,32 @@ body {
   background: linear-gradient(135deg, #faf8f5 0%, #f0ede8 100%);
   color: var(--foreground);
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+  width: 100%;
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-all duration-200;
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+/* Remove default button styles */
+button,
+input[type="button"],
+input[type="submit"] {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
 }
