@@ -2,17 +2,12 @@
 
 import { useAuth } from "@/lib/auth";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AuthButton from "@/components/AuthButton";
 
 export default function LandingPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
-  const [currentDomain, setCurrentDomain] = useState("");
-
-  useEffect(() => {
-    setCurrentDomain(window.location.hostname);
-  }, []);
 
   useEffect(() => {
     if (!loading && user) {
@@ -62,15 +57,6 @@ export default function LandingPage() {
         <p className="mt-12 text-xs text-gray-500">
           Based on the 2023 Rules of Golf
         </p>
-
-        {/* Debug: Show current domain for Firebase auth setup */}
-        {currentDomain && (
-          <div className="mt-6 rounded-lg bg-yellow-50 border border-yellow-200 p-3 text-left">
-            <p className="text-xs font-medium text-yellow-800">Firebase Auth Domain:</p>
-            <p className="mt-1 font-mono text-xs text-yellow-900 break-all select-all">{currentDomain}</p>
-            <p className="mt-2 text-xs text-yellow-700">Add this exact domain to Firebase Console → Authentication → Settings → Authorized domains</p>
-          </div>
-        )}
       </div>
     </div>
   );
