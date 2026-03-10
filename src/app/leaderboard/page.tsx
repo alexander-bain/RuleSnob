@@ -92,7 +92,7 @@ function LeaderboardContent() {
       );
       setNewGroupName("");
       setShowCreate(false);
-      setSuccessMessage(`Group created! Invite code: ${inviteCode}`);
+      setSuccessMessage(`Group created! Share the invite link to add friends.`);
       setSelectedGroupId(groupId);
       await loadGroups();
       trackGroupCreated({
@@ -142,9 +142,10 @@ function LeaderboardContent() {
     }
   };
 
-  const copyInviteCode = (code: string) => {
-    navigator.clipboard.writeText(code);
-    setSuccessMessage("Invite code copied!");
+  const copyInviteLink = (code: string) => {
+    const url = `${window.location.origin}/join/${code}`;
+    navigator.clipboard.writeText(url);
+    setSuccessMessage("Invite link copied!");
     setTimeout(() => setSuccessMessage(null), 2000);
     if (selectedGroup) {
       trackInviteCodeCopied({
@@ -328,23 +329,29 @@ function LeaderboardContent() {
               </div>
             )}
 
-            {/* Invite Code Display */}
+            {/* Invite Link Display */}
             {showInviteCode && selectedGroup && (
-              <div className="flex items-center justify-between border-b border-[#EEEEEE] bg-[#E8F5E9] px-4 py-3">
-                <div>
-                  <div className="text-xs text-[#757575]">Invite code:</div>
-                  <div className="text-lg font-bold tracking-[3px] text-[#1B5E20]">
-                    {selectedGroup.inviteCode}
+              <div className="border-b border-[#EEEEEE] bg-[#E8F5E9] px-4 py-3">
+                <div className="mb-2 flex items-center justify-between">
+                  <div className="text-xs font-medium text-[#757575]">
+                    Share this link to invite friends:
                   </div>
                 </div>
-                <button
-                  onClick={() =>
-                    copyInviteCode(selectedGroup.inviteCode)
-                  }
-                  className="rounded-lg bg-[#1B5E20] px-3 py-1.5 text-xs font-semibold text-white"
-                >
-                  Copy
-                </button>
+                <div className="flex items-center gap-2">
+                  <div className="min-w-0 flex-1 truncate rounded-lg bg-white px-3 py-2 text-sm text-[#2D2D2D]">
+                    {typeof window !== "undefined"
+                      ? `${window.location.origin}/join/${selectedGroup.inviteCode}`
+                      : `/join/${selectedGroup.inviteCode}`}
+                  </div>
+                  <button
+                    onClick={() =>
+                      copyInviteLink(selectedGroup.inviteCode)
+                    }
+                    className="shrink-0 rounded-lg bg-[#1B5E20] px-4 py-2 text-xs font-semibold text-white"
+                  >
+                    Copy Link
+                  </button>
+                </div>
               </div>
             )}
 

@@ -18,6 +18,7 @@ interface HomeScreenProps {
   onStartSession: () => void;
   onSignOut: () => void;
   userName: string | null;
+  userPhotoURL: string | null;
 }
 
 export default function HomeScreen({
@@ -33,6 +34,7 @@ export default function HomeScreen({
   onStartSession,
   onSignOut,
   userName,
+  userPhotoURL,
 }: HomeScreenProps) {
   const router = useRouter();
   const scenariosSeen = Object.values(cardStates).filter(
@@ -65,14 +67,23 @@ export default function HomeScreen({
           <div className="text-sm font-semibold uppercase tracking-[2px] text-[#2E7D32]">
             RuleSnob
           </div>
-          {userName && (
-            <button
-              onClick={onSignOut}
-              className="text-xs font-medium text-[#757575] transition-colors hover:text-[#424242]"
-            >
-              Sign out
-            </button>
-          )}
+          <button
+            onClick={() => router.push("/profile")}
+            className="flex items-center gap-2"
+          >
+            {userPhotoURL ? (
+              <img
+                src={userPhotoURL}
+                alt=""
+                className="h-8 w-8 rounded-full"
+                referrerPolicy="no-referrer"
+              />
+            ) : (
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#E8F5E9] text-sm font-bold text-[#2E7D32]">
+                {userName ? userName.charAt(0).toUpperCase() : "?"}
+              </div>
+            )}
+          </button>
         </div>
 
         {/* Score Card */}

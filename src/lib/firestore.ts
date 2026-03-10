@@ -37,7 +37,31 @@ export async function ensureUserDoc(user: User): Promise<void> {
       scenariosSeen: 0,
       groupIds: [],
     });
+  } else {
+    // Sync display name and photo from Google if they've changed
+    const data = snap.data();
+    const updates: Record<string, unknown> = { lastActive: Timestamp.now() };
+    if (user.displayName && user.displayName !== data.displayName) {
+      updates.displayName = user.displayName;
+    }
+    if (user.photoURL && user.photoURL !== data.photoURL) {
+      updates.photoURL = user.photoURL;
+    }
+    if (Object.keys(updates).length > 1) {
+      await updateDoc(userRef, updates);
+    }
   }
+}
+
+export async function updateDisplayName(uid: string, displayName: string): Promise<void> {
+  const db = getFirebaseDb();
+  await updateDoc(doc(db, "users", uid), { displayName });
+}
+
+export async function getUserDisplayName(uid: string): Promise<string> {
+  const db = getFirebaseDb();
+  const snap = await getDoc(doc(db, "users", uid));
+  return snap.exists() ? (snap.data().displayName || "") : "";
 }
 
 export async function loadCardStates(
@@ -188,6 +212,25 @@ export async function joinGroup(
   });
 
   return { groupId, groupName: data.name, memberCount: data.memberUids.length + 1 };
+}
+
+export async function getGroupByInviteCode(
+  inviteCode: string
+): Promise<{ groupId: string; name: string; memberCount: number } | null> {
+  const db = getFirebaseDb();
+  const q = query(
+    collection(db, "groups"),
+    where("inviteCode", "==", inviteCode.toUpperCase())
+  );
+  const snapshot = await getDocs(q);
+  if (snapshot.empty) return null;
+  const groupDoc = snapshot.docs[0];
+  const data = groupDoc.data();
+  return {
+    groupId: groupDoc.id,
+    name: data.name,
+    memberCount: data.memberUids?.length ?? 0,
+  };
 }
 
 export async function leaveGroup(uid: string, groupId: string): Promise<void> {

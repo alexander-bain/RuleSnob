@@ -17,6 +17,8 @@ import {
   saveSessionResults,
   ensureUserDoc,
   flagScenario,
+  updateDisplayName,
+  getUserDisplayName,
 } from "@/lib/firestore";
 import * as analytics from "@/lib/analytics";
 
@@ -48,6 +50,8 @@ function GameContent() {
   const [sessionLength, setSessionLength] = useState<9 | 18>(9);
   const [firestoreLoaded, setFirestoreLoaded] = useState(false);
   const [generatingAI, setGeneratingAI] = useState(false);
+  const [needsDisplayName, setNeedsDisplayName] = useState(false);
+  const [pendingDisplayName, setPendingDisplayName] = useState("");
 
   // Analytics refs
   const changedCardIds = useRef<Set<string>>(new Set());
@@ -68,6 +72,13 @@ function GameContent() {
       const hydrateStart = Date.now();
       try {
         await ensureUserDoc(user!);
+
+        // Check if user has a display name — prompt if not
+        const storedName = await getUserDisplayName(user!.uid);
+        if (!storedName && !user!.displayName) {
+          setNeedsDisplayName(true);
+        }
+
         const [savedStates, savedStats] = await Promise.all([
           loadCardStates(user!.uid),
           loadUserStats(user!.uid),
@@ -717,6 +728,55 @@ function GameContent() {
     );
   }
 
+  // Display name prompt
+  if (needsDisplayName) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[#FAF8F5] to-[#F0EDE8]">
+        <div className="mx-auto w-full max-w-[400px] px-5">
+          <div className="rounded-2xl border border-[#EEEEEE] bg-white p-8 text-center shadow-sm">
+            <div className="mb-1 text-sm font-semibold uppercase tracking-[2px] text-[#2E7D32]">
+              RuleSnob
+            </div>
+            <div className="mb-6 text-4xl">&#9971;</div>
+            <div className="mb-2 text-lg font-bold text-[#2D2D2D]">
+              What should we call you?
+            </div>
+            <p className="mb-5 text-sm text-[#757575]">
+              This is how you&apos;ll appear on the leaderboard.
+            </p>
+            <input
+              type="text"
+              placeholder="Your name"
+              value={pendingDisplayName}
+              onChange={(e) => setPendingDisplayName(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && pendingDisplayName.trim() && user) {
+                  updateDisplayName(user.uid, pendingDisplayName.trim()).then(
+                    () => setNeedsDisplayName(false)
+                  );
+                }
+              }}
+              className="mb-4 w-full rounded-lg border border-[#EEEEEE] bg-[#FAF8F5] px-4 py-3 text-center text-[15px] text-[#2D2D2D] outline-none focus:border-[#2E7D32]"
+              autoFocus
+            />
+            <button
+              onClick={() => {
+                if (!pendingDisplayName.trim() || !user) return;
+                updateDisplayName(user.uid, pendingDisplayName.trim()).then(
+                  () => setNeedsDisplayName(false)
+                );
+              }}
+              disabled={!pendingDisplayName.trim()}
+              className="w-full rounded-xl bg-[#1B5E20] px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_12px_rgba(27,94,32,0.3)] disabled:opacity-40"
+            >
+              Let&apos;s Go
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Render screens
   if (screen === "home") {
     return (
@@ -733,6 +793,7 @@ function GameContent() {
         onStartSession={startSession}
         onSignOut={signOut}
         userName={user?.displayName ?? null}
+        userPhotoURL={user?.photoURL ?? null}
       />
     );
   }
