@@ -5,45 +5,36 @@
     -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-:root {
-  --background: #faf8f5;
-  --foreground: #2d2d2d;
-}
+@layer base {
+  :root {
+    --background: #faf8f5;
+    --foreground: #2d2d2d;
+  }
 
-body {
-  background: linear-gradient(135deg, #faf8f5 0%, #f0ede8 100%);
-  color: var(--foreground);
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-}
+  body {
+    background: linear-gradient(135deg, #faf8f5 0%, #f0ede8 100%);
+    color: var(--foreground);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
 
-html,
-body,
-#__next {
-  height: 100%;
-  width: 100%;
-}
+  html,
+  body,
+  #__next {
+    height: 100%;
+    width: 100%;
+  }
 
-/* Smooth transitions */
-* {
-  @apply transition-all duration-200;
-}
+  button {
+    cursor: pointer;
+  }
 
-button {
-  @apply cursor-pointer;
-}
-
-/* Remove default button styles (iOS Safari requires -webkit-appearance) */
-button,
-input[type="button"],
-input[type="submit"] {
-  -webkit-appearance: none;
-  appearance: none;
-  border: none;
-  background: none;
-  padding: 0;
-  font: inherit;
-  opacity: 1;
-  border-radius: 0;
+  /* Remove iOS Safari native button styling */
+  button,
+  input[type="button"],
+  input[type="submit"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
 }
