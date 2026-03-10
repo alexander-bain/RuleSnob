@@ -34,12 +34,16 @@ button {
   @apply cursor-pointer;
 }
 
-/* Remove default button styles */
+/* Remove default button styles (iOS Safari requires -webkit-appearance) */
 button,
 input[type="button"],
 input[type="submit"] {
+  -webkit-appearance: none;
+  appearance: none;
   border: none;
   background: none;
   padding: 0;
   font: inherit;
+  opacity: 1;
+  border-radius: 0;
 }
