@@ -35,7 +35,7 @@ export default function LandingPage() {
         <p className="mb-8 text-base leading-relaxed text-[#757575]">
           Master the Rules of Golf with spaced repetition.
           <br />
-          49 scenario-based questions. Track your Rules IQ.
+          300+ scenario-based questions. Track your Rules IQ.
           <br />
           Become a Rules Official.
         </p>

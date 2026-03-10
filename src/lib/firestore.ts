@@ -55,7 +55,7 @@ export async function loadCardStates(
 
 export async function loadUserStats(
   uid: string
-): Promise<{ totalSessions: number; streak: number } | null> {
+): Promise<{ totalSessions: number; streak: number; lastPlayedDate: string | null } | null> {
   const db = getFirebaseDb();
   const userRef = doc(db, "users", uid);
   const snap = await getDoc(userRef);
@@ -64,6 +64,7 @@ export async function loadUserStats(
   return {
     totalSessions: data.totalSessions ?? 0,
     streak: data.streak ?? 0,
+    lastPlayedDate: data.lastPlayedDate ?? null,
   };
 }
 
@@ -100,6 +101,7 @@ export async function saveSessionResults(
       streak: userStats.streak,
       scenariosSeen: userStats.scenariosSeen,
       lastActive: Timestamp.now(),
+      lastPlayedDate: new Date().toISOString().slice(0, 10),
     },
     { merge: true }
   );

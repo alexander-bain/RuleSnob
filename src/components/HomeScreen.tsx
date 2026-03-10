@@ -12,6 +12,8 @@ interface HomeScreenProps {
   cardStates: Record<string, CardState>;
   tier: string;
   onTierChange: (tier: string) => void;
+  sessionLength: 9 | 18;
+  onSessionLengthChange: (len: 9 | 18) => void;
   onStartSession: () => void;
   onSignOut: () => void;
   userName: string | null;
@@ -25,6 +27,8 @@ export default function HomeScreen({
   cardStates,
   tier,
   onTierChange,
+  sessionLength,
+  onSessionLengthChange,
   onStartSession,
   onSignOut,
   userName,
@@ -201,12 +205,37 @@ export default function HomeScreen({
           </div>
         </div>
 
+        {/* Session Length */}
+        <div className="mb-5 rounded-2xl border border-[#EEEEEE] bg-white px-6 py-4 shadow-sm">
+          <div className="mb-3 text-[13px] font-semibold uppercase tracking-[1px] text-[#757575]">
+            Session Length
+          </div>
+          <div className="flex gap-2">
+            {([9, 18] as const).map((len) => (
+              <button
+                key={len}
+                onClick={() => onSessionLengthChange(len)}
+                className="flex-1 rounded-lg border-[1.5px] px-1 py-2 text-xs font-semibold transition-all"
+                style={{
+                  borderColor:
+                    sessionLength === len ? "#1B5E20" : "#EEEEEE",
+                  backgroundColor:
+                    sessionLength === len ? "#E8F5E9" : "#FFFFFF",
+                  color: sessionLength === len ? "#1B5E20" : "#757575",
+                }}
+              >
+                {len} holes
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Start Button */}
         <button
           onClick={onStartSession}
           className="w-full rounded-xl bg-[#1B5E20] px-4 py-4 text-base font-semibold tracking-[0.5px] text-white shadow-[0_4px_12px_rgba(27,94,32,0.3)] transition-transform active:scale-[0.98]"
         >
-          Start Session
+          Start {sessionLength === 9 ? "Front 9" : "Full 18"}
         </button>
         <div className="mt-2 text-center text-xs text-[#757575]">
           {dueCount} due for review &middot; {newCount} new scenarios

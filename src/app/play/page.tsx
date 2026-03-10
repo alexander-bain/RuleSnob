@@ -40,8 +40,10 @@ function GameContent() {
     null
   );
   const [streak, setStreak] = useState(0);
+  const [lastPlayedDate, setLastPlayedDate] = useState<string | null>(null);
   const [totalSessions, setTotalSessions] = useState(0);
   const [tier, setTier] = useState("all");
+  const [sessionLength, setSessionLength] = useState<9 | 18>(9);
   const [firestoreLoaded, setFirestoreLoaded] = useState(false);
 
   // Track which card IDs changed during session for batch save
@@ -72,6 +74,7 @@ function GameContent() {
         if (savedStats) {
           setTotalSessions(savedStats.totalSessions);
           setStreak(savedStats.streak);
+          setLastPlayedDate(savedStats.lastPlayedDate);
         }
       } catch (err) {
         console.error("Failed to load from Firestore:", err);
@@ -113,10 +116,15 @@ function GameContent() {
       return cs.timesSeen > 0 && cs.interval === 0;
     });
 
+    // Distribute session length: ~25% wrong, ~40% due, ~35% new
+    const wrongCount = Math.min(wrong.length, Math.ceil(sessionLength * 0.25));
+    const dueCount = Math.min(due.length, Math.ceil(sessionLength * 0.4));
+    const unseenCount = sessionLength - wrongCount - dueCount;
+
     const queue = [
-      ...wrong.slice(0, 3),
-      ...due.slice(0, 5),
-      ...unseen.slice(0, 5),
+      ...wrong.slice(0, wrongCount),
+      ...due.slice(0, dueCount),
+      ...unseen.slice(0, Math.max(0, unseenCount)),
     ];
 
     // Shuffle
@@ -128,7 +136,7 @@ function GameContent() {
     if (queue.length === 0) {
       const any = filteredScenarios
         .sort(() => Math.random() - 0.5)
-        .slice(0, 10);
+        .slice(0, sessionLength);
       setSessionQueue(any);
     } else {
       setSessionQueue(queue);
@@ -140,7 +148,7 @@ function GameContent() {
     setSessionResults([]);
     setSessionStartTime(Date.now());
     setScreen("session");
-  }, [cardStates, tier]);
+  }, [cardStates, tier, sessionLength]);
 
   const currentScenario = sessionQueue[currentIndex];
 
@@ -178,9 +186,20 @@ function GameContent() {
       const newTotalSessions = totalSessions + 1;
       setTotalSessions(newTotalSessions);
 
-      const correctCount = sessionResults.filter((r) => r.correct).length;
-      const newStreak =
-        correctCount >= sessionResults.length * 0.5 ? streak + 1 : streak;
+      // Streak = consecutive days played
+      const today = new Date().toISOString().slice(0, 10);
+      let newStreak = streak;
+      if (lastPlayedDate !== today) {
+        // Check if yesterday was played
+        const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+        if (lastPlayedDate === yesterday || lastPlayedDate === null) {
+          newStreak = streak + 1;
+        } else if (lastPlayedDate !== null && lastPlayedDate < yesterday) {
+          // Streak broken — start fresh at 1
+          newStreak = 1;
+        }
+        setLastPlayedDate(today);
+      }
       setStreak(newStreak);
 
       // Save to Firestore at session end
@@ -256,6 +275,8 @@ function GameContent() {
         cardStates={cardStates}
         tier={tier}
         onTierChange={setTier}
+        sessionLength={sessionLength}
+        onSessionLengthChange={setSessionLength}
         onStartSession={startSession}
         onSignOut={signOut}
         userName={user?.displayName ?? null}

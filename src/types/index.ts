@@ -19,6 +19,7 @@ export interface Scenario {
   correct: number;
   rule: string;
   explanation: string;
+  tags: string[];
 }
 
 export interface CategoryInfo {
